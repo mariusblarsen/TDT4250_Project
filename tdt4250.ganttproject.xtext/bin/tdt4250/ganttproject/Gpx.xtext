@@ -1,0 +1,9 @@
+grammar tdt4250.ganttproject.Gpx with org.eclipse.xtext.common.Terminals
+
+generate gpx "http://www.ganttproject.tdt4250/Gpx"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
