@@ -2,8 +2,39 @@ grammar tdt4250.ganttproject.Gpx with org.eclipse.xtext.common.Terminals
 
 generate gpx "http://www.ganttproject.tdt4250/Gpx"
 
-Model:
-	greetings+=Greeting*;
+//import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+Project: 
+	'Project' name = STRING
 	
-Greeting:
-	'Hello' name=ID '!';
+	(tasks+= AbstractTask (';' tasks+= AbstractTask)*)?;
+	
+//Date returns ecore::EDate: (INT '.' INT '.' INT);	
+	
+AbstractTask: Task | Milestone;	
+	
+Task:
+	'Task' name = STRING
+		('lasts' duration = INT durationUnit = DURATION_UNIT)?  
+		('from' startDate = STRING)?
+		('due' endDate = STRING)?
+		((',')? 'depends' 'on' dependeciesAsDependant += Dependency (',' dependeciesAsDependant += Dependency)*)?
+	('{' 
+		subtasks+=AbstractTask (';' subtasks+=AbstractTask)*
+	'}')?
+	
+;
+
+Milestone:
+	'Milestone' name = STRING 'planned' endDate = STRING
+	((',')? 'depends' 'on' dependeciesAsDependant += Dependency (',' dependeciesAsDependant += Dependency)*)?
+	('{' 
+		subtasks +=AbstractTask (',' subtasks +=AbstractTask)*
+	'}')?   
+;
+
+Dependency:
+	dependee = [AbstractTask|STRING] 
+;
+
+enum DURATION_UNIT: DAY = 'day' | DAY = 'days' | WEEK = 'week' | WEEK = 'weeks';
