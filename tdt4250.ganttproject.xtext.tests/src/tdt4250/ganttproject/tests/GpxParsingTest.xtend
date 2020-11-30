@@ -28,13 +28,13 @@ class GpxParsingTest {
 Project 'MyProject'
 
 Task 'Task 1'{
-	Task 'Task 1.1' lasts 5 days from '10.11.20';
+	Task 'Task 1.1' lasts 5 days from 10.11.20;
 	Task 'Task 1.2' lasts 1 day, depends on 'Task 1.1'
 };
 Task 'Task 2' lasts 10 days, depends on 'Task 2';
-Milestone 'Phase 1' planned '27.11.20', depends on 'Task 2';
+Milestone 'Phase 1' planned 27.11.20, depends on 'Task 2';
 Task 'Task 3' depends on 'Phase 1'{
-	Task 'Task 3.1' from '29.10.20' due '30.11.20';
+	Task 'Task 3.1' from 29.11.20 due 30.11.20;
 	Task 'Task 3.2' lasts 1 day;
 	Task 'Task 3.3' lasts 1 week, depends on 'Task 3.1', 'Task 1'
 };
@@ -56,13 +56,13 @@ Task 'Task 4' lasts 10 days, depends on 'Task 3.1'
 		val task3 = result.tasks.get(3) as Task
 		
 		Assertions.assertEquals(3, task3.subtasks.size)
-		Assertions.assertSame(milestone1, task3.dependeciesAsDependant.get(0).dependee)
+		Assertions.assertSame(milestone1, task3.dependeciesAsDependant.get(0))
 		
 		val task31 = task3.subtasks.get(0) as Task
 		val task32 = task3.subtasks.get(1) as Task
 		val task33 = task3.subtasks.get(2) as Task
 		
-		var testDate = new Date(120, 9, 29)
+		var testDate = new Date(120, 10, 29)
 		
 		Assertions.assertEquals(testDate, task31.startDate)
 		//Assertions.assertEquals('30.11.20', task31.endDate)
@@ -71,8 +71,8 @@ Task 'Task 4' lasts 10 days, depends on 'Task 3.1'
 		Assertions.assertEquals(1, task33.duration)
 		Assertions.assertEquals(DURATION_UNIT.WEEK, task33.durationUnit)
 		Assertions.assertEquals(2, task33.dependeciesAsDependant.size)
-		Assertions.assertSame(task31, task33.dependeciesAsDependant.get(0).dependee)
-		Assertions.assertSame(task1, task33.dependeciesAsDependant.get(1).dependee)
+		Assertions.assertSame(task31, task33.dependeciesAsDependant.get(0))
+		Assertions.assertSame(task1, task33.dependeciesAsDependant.get(1))
 		
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package
+			uri = "http://www.ganttproject.tdt4250/Gpx"
+			class = "tdt4250.ganttproject.gpx.GpxPackage"
+			genModel = "model/generated/Gpx.genmodel" />
+	</extension>
+</plugin>

@@ -28,7 +28,6 @@ public class GpxConverterService extends DefaultTerminalConverters {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy");
 				Date result = null;
 				try {
-					string = string.substring(1, string.length() - 1);
 					result = dateFormat.parse(string);
 				} catch (ParseException e) {
 					throw new ValueConverterException("Invalid date format: use 'dd.mm.yy'. Parsing error: " + e.getMessage(), node, e);

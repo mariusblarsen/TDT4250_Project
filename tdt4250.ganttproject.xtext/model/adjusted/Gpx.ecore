@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="gpx" nsURI="http://www.ganttproject.tdt4250/Gpx" nsPrefix="gpx">
+  <eClassifiers xsi:type="ecore:EClass" name="Project">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
+        eType="#//AbstractTask" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractTask">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDependant"
+        upperBound="-1" eType="#//Dependency" containment="true" eOpposite="#//Dependency/dependant"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subtasks" upperBound="-1"
+        eType="#//AbstractTask" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDependee"
+        eType="#//Dependency" containment="true" eOpposite="#//Dependency/dependee"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//AbstractTask">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="durationUnit" eType="#//DURATION_UNIT"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//AbstractTask"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Dependency">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependee" eType="#//AbstractTask"
+        eOpposite="#//AbstractTask/dependenciesAsDependee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependant" eType="#//AbstractTask"
+        eOpposite="#//AbstractTask/dependenciesAsDependant"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DURATION_UNIT">
+    <eLiterals name="DAY" literal="day"/>
+    <eLiterals name="WEEK" value="1" literal="week"/>
+  </eClassifiers>
+</ecore:EPackage>

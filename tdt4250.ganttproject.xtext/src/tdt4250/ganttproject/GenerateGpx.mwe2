@@ -6,7 +6,7 @@ import org.eclipse.xtext.xtext.generator.model.project.*
 var rootPath = ".."
 
 Workflow {
-	
+
 	component = XtextGenerator {
 		configuration = {
 			project = StandardProjectConfig {
@@ -33,6 +33,8 @@ Workflow {
 		language = StandardLanguage {
 			name = "tdt4250.ganttproject.Gpx"
 			fileExtensions = "gpx"
+			
+			referencedResource = "platform:/resource/tdt4250.ganttproject.xtext/model/adjusted/Gpx.genmodel"
 
 			serializer = {
 				generateStub = false
