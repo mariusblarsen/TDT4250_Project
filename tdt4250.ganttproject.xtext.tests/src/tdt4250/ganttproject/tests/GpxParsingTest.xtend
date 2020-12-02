@@ -56,7 +56,7 @@ Task 'Task 4' lasts 10 days, depends on 'Task 3.1'
 		val task3 = result.tasks.get(3) as Task
 		
 		Assertions.assertEquals(3, task3.subtasks.size)
-		Assertions.assertSame(milestone1, task3.dependeciesAsDependant.get(0))
+		Assertions.assertSame(milestone1, task3.dependency.dependants.get(0))
 		
 		val task31 = task3.subtasks.get(0) as Task
 		val task32 = task3.subtasks.get(1) as Task
@@ -70,9 +70,12 @@ Task 'Task 4' lasts 10 days, depends on 'Task 3.1'
 		Assertions.assertEquals(DURATION_UNIT.DAY, task32.durationUnit)
 		Assertions.assertEquals(1, task33.duration)
 		Assertions.assertEquals(DURATION_UNIT.WEEK, task33.durationUnit)
-		Assertions.assertEquals(2, task33.dependeciesAsDependant.size)
-		Assertions.assertSame(task31, task33.dependeciesAsDependant.get(0))
-		Assertions.assertSame(task1, task33.dependeciesAsDependant.get(1))
+		Assertions.assertEquals(2, task33.dependency.dependants.size)
+		Assertions.assertSame(task31, task33.dependency.dependants.get(0))
+		Assertions.assertSame(task1, task33.dependency.dependants.get(1))
+		
+		// Test for dependecy-links
+		Assertions.assertSame(task1, task1.dependency.dependant)
 		
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
