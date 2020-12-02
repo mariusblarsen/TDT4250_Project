@@ -5,6 +5,6 @@
 		<package
 			uri = "http://www.ganttproject.tdt4250/Gpx"
 			class = "tdt4250.ganttproject.gpx.GpxPackage"
-			genModel = "model/generated/Gpx.genmodel" />
+			genModel = "/model/adjusted/Gpx.genmodel" />
 	</extension>
 </plugin>

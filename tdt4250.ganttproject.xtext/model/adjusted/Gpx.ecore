@@ -9,12 +9,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="AbstractTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDependant"
-        upperBound="-1" eType="#//Dependency" containment="true" eOpposite="#//Dependency/dependant"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subtasks" upperBound="-1"
         eType="#//AbstractTask" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependenciesAsDependee"
-        eType="#//Dependency" containment="true" eOpposite="#//Dependency/dependee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependency" eType="#//Dependency"
+        containment="true" eOpposite="#//Dependency/dependant"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//AbstractTask">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -23,10 +21,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//AbstractTask"/>
   <eClassifiers xsi:type="ecore:EClass" name="Dependency">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependee" eType="#//AbstractTask"
-        eOpposite="#//AbstractTask/dependenciesAsDependee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependees" upperBound="-1"
+        eType="#//AbstractTask"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependant" eType="#//AbstractTask"
-        eOpposite="#//AbstractTask/dependenciesAsDependant"/>
+        eOpposite="#//AbstractTask/dependency"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="DURATION_UNIT">
     <eLiterals name="DAY" literal="day"/>
