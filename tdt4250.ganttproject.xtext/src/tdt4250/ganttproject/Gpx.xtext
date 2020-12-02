@@ -16,7 +16,7 @@ Task:
 	('lasts' duration=INT durationUnit=DURATION_UNIT)?
 	('from' startDate=Date)?
 	('due' endDate=Date)?
-	((',')? dependency=Dependency)
+	((',')? 'depends' 'on' dependency=Dependency)?
 	//((',')? 'depends' 'on' dependenciesAsDependant+=Dependency (',' dependenciesAsDependant+=Dependency)*)?
 	('{'
 	subtasks+=AbstractTask (';' subtasks+=AbstractTask)*
@@ -24,15 +24,15 @@ Task:
 
 Milestone:
 	'Milestone' name=STRING 'planned' endDate=Date
-	((',')? dependency=Dependency)
+	((',')? 'depends' 'on' dependency=Dependency)?
 	//((',')? 'depends' 'on' dependenciesAsDependant+=Dependency (','  dependenciesAsDependant+=Dependency)*)?
 	('{'
-	subtasks+=AbstractTask (',' subtasks+=AbstractTask)*
+	subtasks+=AbstractTask (';' subtasks+=AbstractTask)*
 	'}')?;
 
 //separate entity because it's going to be extended with extra characteristics, not just task by itself
 Dependency:
-	'depends' 'on' dependants+=[AbstractTask|STRING] (',' dependants+=[AbstractTask|STRING])* 
+	dependees+=[AbstractTask|STRING] (',' dependees+=[AbstractTask|STRING])* 
 	//dependee=[AbstractTask|STRING]
 ;
 

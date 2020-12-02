@@ -21,7 +21,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//AbstractTask"/>
   <eClassifiers xsi:type="ecore:EClass" name="Dependency">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dependants" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependees" upperBound="-1"
         eType="#//AbstractTask"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dependant" eType="#//AbstractTask"
         eOpposite="#//AbstractTask/dependency"/>
