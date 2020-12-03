@@ -93,7 +93,7 @@ class GpxCustomGenerator {
 	
 	def static dispatch void generateTask(Milestone task, StringBuilder stringBuilder) {
 		stringBuilder <<'''
-			<task id="TODO" name="«task.name»" color="#990066" meeting="true" start="«task.endDate != null? convertDate(task.endDate) : 0»" duration="0" complete="0" thirdDate="«task.endDate != null? convertDate(task.endDate) : 0»" thirdDate-constraint="0" expand="true">
+			<task id="«task.id»" name="«task.name»" color="#990066" meeting="true" start="«task.endDate != null? convertDate(task.endDate) : 0»" duration="0" complete="0" thirdDate="«task.endDate != null? convertDate(task.endDate) : 0»" thirdDate-constraint="0" expand="true">
 '''
 //TODO list tasks which DEPEND on the current one /either bi-directional links in model or derived feature
         stringBuilder << "
@@ -102,7 +102,7 @@ class GpxCustomGenerator {
 	
 		def static dispatch void generateTask(Task task, StringBuilder stringBuilder) {
 		stringBuilder << '''
-			<task id="TODO" name="«task.name»" color="#990066" meeting="false" start="«task.endDate != null? convertDate(task.startDate) : 0»" duration="«task.duration»" complete="0" thirdDate="«task.endDate != null? convertDate(task.endDate) : 0»" thirdDate-constraint="0" expand="true">
+			<task id="«task.id»" name="«task.name»" color="#990066" meeting="false" start="«task.endDate != null? convertDate(task.startDate) : 0»" duration="«task.duration»" complete="0" thirdDate="«task.endDate != null? convertDate(task.endDate) : 0»" thirdDate-constraint="0" expand="true">
 '''
 //TODO list tasks which DEPEND on the current one /either bi-directional links in model or derived feature
         task.subtasks.forEach[generateTask(it, stringBuilder)]

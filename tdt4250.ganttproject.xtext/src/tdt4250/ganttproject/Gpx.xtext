@@ -24,11 +24,8 @@ Task:
 
 Milestone:
 	'Milestone' name=STRING 'planned' endDate=Date
-	((',')? 'depends' 'on' dependency=Dependency)?
-	//((',')? 'depends' 'on' dependenciesAsDependant+=Dependency (','  dependenciesAsDependant+=Dependency)*)?
-	('{'
-	subtasks+=AbstractTask (';' subtasks+=AbstractTask)*
-	'}')?;
+	((',')? 'depends' 'on' dependency=Dependency)?;
+	//((',')? 'depends' 'on' dependenciesAsDependant+=Dependency (','  dependenciesAsDependant+=Dependency)*)?;
 
 //separate entity because it's going to be extended with extra characteristics, not just task by itself
 Dependency:

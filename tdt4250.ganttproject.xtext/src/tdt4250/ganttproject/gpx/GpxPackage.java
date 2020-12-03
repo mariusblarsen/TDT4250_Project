@@ -123,22 +123,22 @@ public interface GpxPackage extends EPackage {
 	int ABSTRACT_TASK__END_DATE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Subtasks</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_TASK__SUBTASKS = 2;
-
-	/**
 	 * The feature id for the '<em><b>Dependency</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TASK__DEPENDENCY = 3;
+	int ABSTRACT_TASK__DEPENDENCY = 2;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TASK__ID = 3;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Task</em>' class.
@@ -178,15 +178,6 @@ public interface GpxPackage extends EPackage {
 	int TASK__END_DATE = ABSTRACT_TASK__END_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Subtasks</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK__SUBTASKS = ABSTRACT_TASK__SUBTASKS;
-
-	/**
 	 * The feature id for the '<em><b>Dependency</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,6 +185,15 @@ public interface GpxPackage extends EPackage {
 	 * @ordered
 	 */
 	int TASK__DEPENDENCY = ABSTRACT_TASK__DEPENDENCY;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__ID = ABSTRACT_TASK__ID;
 
 	/**
 	 * The feature id for the '<em><b>Duration</b></em>' attribute.
@@ -223,13 +223,22 @@ public interface GpxPackage extends EPackage {
 	int TASK__START_DATE = ABSTRACT_TASK_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Subtasks</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__SUBTASKS = ABSTRACT_TASK_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_FEATURE_COUNT = ABSTRACT_TASK_FEATURE_COUNT + 3;
+	int TASK_FEATURE_COUNT = ABSTRACT_TASK_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link tdt4250.ganttproject.gpx.impl.MilestoneImpl <em>Milestone</em>}' class.
@@ -260,15 +269,6 @@ public interface GpxPackage extends EPackage {
 	int MILESTONE__END_DATE = ABSTRACT_TASK__END_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Subtasks</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MILESTONE__SUBTASKS = ABSTRACT_TASK__SUBTASKS;
-
-	/**
 	 * The feature id for the '<em><b>Dependency</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -276,6 +276,15 @@ public interface GpxPackage extends EPackage {
 	 * @ordered
 	 */
 	int MILESTONE__DEPENDENCY = ABSTRACT_TASK__DEPENDENCY;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__ID = ABSTRACT_TASK__ID;
 
 	/**
 	 * The number of structural features of the '<em>Milestone</em>' class.
@@ -399,17 +408,6 @@ public interface GpxPackage extends EPackage {
 	EAttribute getAbstractTask_EndDate();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link tdt4250.ganttproject.gpx.AbstractTask#getSubtasks <em>Subtasks</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Subtasks</em>'.
-	 * @see tdt4250.ganttproject.gpx.AbstractTask#getSubtasks()
-	 * @see #getAbstractTask()
-	 * @generated
-	 */
-	EReference getAbstractTask_Subtasks();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link tdt4250.ganttproject.gpx.AbstractTask#getDependency <em>Dependency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -419,6 +417,17 @@ public interface GpxPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAbstractTask_Dependency();
+
+	/**
+	 * Returns the meta object for the attribute '{@link tdt4250.ganttproject.gpx.AbstractTask#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see tdt4250.ganttproject.gpx.AbstractTask#getId()
+	 * @see #getAbstractTask()
+	 * @generated
+	 */
+	EAttribute getAbstractTask_Id();
 
 	/**
 	 * Returns the meta object for class '{@link tdt4250.ganttproject.gpx.Task <em>Task</em>}'.
@@ -462,6 +471,17 @@ public interface GpxPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTask_StartDate();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link tdt4250.ganttproject.gpx.Task#getSubtasks <em>Subtasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Subtasks</em>'.
+	 * @see tdt4250.ganttproject.gpx.Task#getSubtasks()
+	 * @see #getTask()
+	 * @generated
+	 */
+	EReference getTask_Subtasks();
 
 	/**
 	 * Returns the meta object for class '{@link tdt4250.ganttproject.gpx.Milestone <em>Milestone</em>}'.
@@ -590,20 +610,20 @@ public interface GpxPackage extends EPackage {
 		EAttribute ABSTRACT_TASK__END_DATE = eINSTANCE.getAbstractTask_EndDate();
 
 		/**
-		 * The meta object literal for the '<em><b>Subtasks</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ABSTRACT_TASK__SUBTASKS = eINSTANCE.getAbstractTask_Subtasks();
-
-		/**
 		 * The meta object literal for the '<em><b>Dependency</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ABSTRACT_TASK__DEPENDENCY = eINSTANCE.getAbstractTask_Dependency();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_TASK__ID = eINSTANCE.getAbstractTask_Id();
 
 		/**
 		 * The meta object literal for the '{@link tdt4250.ganttproject.gpx.impl.TaskImpl <em>Task</em>}' class.
@@ -638,6 +658,14 @@ public interface GpxPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TASK__START_DATE = eINSTANCE.getTask_StartDate();
+
+		/**
+		 * The meta object literal for the '<em><b>Subtasks</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TASK__SUBTASKS = eINSTANCE.getTask_Subtasks();
 
 		/**
 		 * The meta object literal for the '{@link tdt4250.ganttproject.gpx.impl.MilestoneImpl <em>Milestone</em>}' class.

@@ -4,6 +4,11 @@
 package tdt4250.ganttproject;
 
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.resource.DerivedStateAwareResource;
+import org.eclipse.xtext.resource.DerivedStateAwareResourceDescriptionManager;
+import org.eclipse.xtext.resource.IDerivedStateComputer;
+import org.eclipse.xtext.resource.IResourceDescription;
+import org.eclipse.xtext.resource.XtextResource;
 
 import tdt4250.ganttproject.converter.GpxConverterService;
 
@@ -15,5 +20,18 @@ public class GpxRuntimeModule extends AbstractGpxRuntimeModule {
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
 		return GpxConverterService.class;
+	}
+	
+	public Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
+		    return GpxDerivedStateComputer.class;
+	} 
+	
+	@Override
+	public Class<? extends XtextResource> bindXtextResource() {
+	    return DerivedStateAwareResource.class;
+	}
+
+	public Class<? extends IResourceDescription.Manager> bindIResourceDescriptionManager() {
+	    return DerivedStateAwareResourceDescriptionManager.class;
 	}
 }

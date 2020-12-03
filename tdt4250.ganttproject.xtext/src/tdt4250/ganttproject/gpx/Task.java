@@ -4,6 +4,7 @@
 package tdt4250.ganttproject.gpx;
 
 import java.util.Date;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,6 +18,7 @@ import java.util.Date;
  *   <li>{@link tdt4250.ganttproject.gpx.Task#getDuration <em>Duration</em>}</li>
  *   <li>{@link tdt4250.ganttproject.gpx.Task#getDurationUnit <em>Duration Unit</em>}</li>
  *   <li>{@link tdt4250.ganttproject.gpx.Task#getStartDate <em>Start Date</em>}</li>
+ *   <li>{@link tdt4250.ganttproject.gpx.Task#getSubtasks <em>Subtasks</em>}</li>
  * </ul>
  *
  * @see tdt4250.ganttproject.gpx.GpxPackage#getTask()
@@ -92,5 +94,17 @@ public interface Task extends AbstractTask {
 	 * @generated
 	 */
 	void setStartDate(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Subtasks</b></em>' containment reference list.
+	 * The list contents are of type {@link tdt4250.ganttproject.gpx.AbstractTask}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Subtasks</em>' containment reference list.
+	 * @see tdt4250.ganttproject.gpx.GpxPackage#getTask_Subtasks()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<AbstractTask> getSubtasks();
 
 } // Task

@@ -19,13 +19,14 @@
     <genClasses ecoreClass="Gpx.ecore#//AbstractTask">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpx.ecore#//AbstractTask/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpx.ecore#//AbstractTask/endDate"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpx.ecore#//AbstractTask/subtasks"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpx.ecore#//AbstractTask/dependency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpx.ecore#//AbstractTask/id"/>
     </genClasses>
     <genClasses ecoreClass="Gpx.ecore#//Task">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpx.ecore#//Task/duration"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpx.ecore#//Task/durationUnit"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpx.ecore#//Task/startDate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpx.ecore#//Task/subtasks"/>
     </genClasses>
     <genClasses ecoreClass="Gpx.ecore#//Milestone"/>
     <genClasses ecoreClass="Gpx.ecore#//Dependency">

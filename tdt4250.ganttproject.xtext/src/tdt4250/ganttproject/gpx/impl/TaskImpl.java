@@ -3,14 +3,21 @@
  */
 package tdt4250.ganttproject.gpx.impl;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import tdt4250.ganttproject.gpx.AbstractTask;
 import tdt4250.ganttproject.gpx.DURATION_UNIT;
 import tdt4250.ganttproject.gpx.GpxPackage;
 import tdt4250.ganttproject.gpx.Task;
@@ -26,6 +33,7 @@ import tdt4250.ganttproject.gpx.Task;
  *   <li>{@link tdt4250.ganttproject.gpx.impl.TaskImpl#getDuration <em>Duration</em>}</li>
  *   <li>{@link tdt4250.ganttproject.gpx.impl.TaskImpl#getDurationUnit <em>Duration Unit</em>}</li>
  *   <li>{@link tdt4250.ganttproject.gpx.impl.TaskImpl#getStartDate <em>Start Date</em>}</li>
+ *   <li>{@link tdt4250.ganttproject.gpx.impl.TaskImpl#getSubtasks <em>Subtasks</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,6 +98,16 @@ public class TaskImpl extends AbstractTaskImpl implements Task {
 	 * @ordered
 	 */
 	protected Date startDate = START_DATE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSubtasks() <em>Subtasks</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubtasks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AbstractTask> subtasks;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -185,6 +203,33 @@ public class TaskImpl extends AbstractTaskImpl implements Task {
 	 * @generated
 	 */
 	@Override
+	public EList<AbstractTask> getSubtasks() {
+		if (subtasks == null) {
+			subtasks = new EObjectContainmentEList<AbstractTask>(AbstractTask.class, this, GpxPackage.TASK__SUBTASKS);
+		}
+		return subtasks;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case GpxPackage.TASK__SUBTASKS:
+				return ((InternalEList<?>)getSubtasks()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case GpxPackage.TASK__DURATION:
@@ -193,6 +238,8 @@ public class TaskImpl extends AbstractTaskImpl implements Task {
 				return getDurationUnit();
 			case GpxPackage.TASK__START_DATE:
 				return getStartDate();
+			case GpxPackage.TASK__SUBTASKS:
+				return getSubtasks();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,6 +249,7 @@ public class TaskImpl extends AbstractTaskImpl implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -213,6 +261,10 @@ public class TaskImpl extends AbstractTaskImpl implements Task {
 				return;
 			case GpxPackage.TASK__START_DATE:
 				setStartDate((Date)newValue);
+				return;
+			case GpxPackage.TASK__SUBTASKS:
+				getSubtasks().clear();
+				getSubtasks().addAll((Collection<? extends AbstractTask>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -235,6 +287,9 @@ public class TaskImpl extends AbstractTaskImpl implements Task {
 			case GpxPackage.TASK__START_DATE:
 				setStartDate(START_DATE_EDEFAULT);
 				return;
+			case GpxPackage.TASK__SUBTASKS:
+				getSubtasks().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -253,6 +308,8 @@ public class TaskImpl extends AbstractTaskImpl implements Task {
 				return durationUnit != DURATION_UNIT_EDEFAULT;
 			case GpxPackage.TASK__START_DATE:
 				return START_DATE_EDEFAULT == null ? startDate != null : !START_DATE_EDEFAULT.equals(startDate);
+			case GpxPackage.TASK__SUBTASKS:
+				return subtasks != null && !subtasks.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

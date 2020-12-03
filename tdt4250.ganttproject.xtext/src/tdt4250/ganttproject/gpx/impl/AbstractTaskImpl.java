@@ -34,8 +34,8 @@ import tdt4250.ganttproject.gpx.GpxPackage;
  * <ul>
  *   <li>{@link tdt4250.ganttproject.gpx.impl.AbstractTaskImpl#getName <em>Name</em>}</li>
  *   <li>{@link tdt4250.ganttproject.gpx.impl.AbstractTaskImpl#getEndDate <em>End Date</em>}</li>
- *   <li>{@link tdt4250.ganttproject.gpx.impl.AbstractTaskImpl#getSubtasks <em>Subtasks</em>}</li>
  *   <li>{@link tdt4250.ganttproject.gpx.impl.AbstractTaskImpl#getDependency <em>Dependency</em>}</li>
+ *   <li>{@link tdt4250.ganttproject.gpx.impl.AbstractTaskImpl#getId <em>Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -82,16 +82,6 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 	protected Date endDate = END_DATE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSubtasks() <em>Subtasks</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubtasks()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AbstractTask> subtasks;
-
-	/**
 	 * The cached value of the '{@link #getDependency() <em>Dependency</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,6 +90,26 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 	 * @ordered
 	 */
 	protected Dependency dependency;
+
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ID_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected int id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -172,19 +182,6 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 	 * @generated
 	 */
 	@Override
-	public EList<AbstractTask> getSubtasks() {
-		if (subtasks == null) {
-			subtasks = new EObjectContainmentEList<AbstractTask>(AbstractTask.class, this, GpxPackage.ABSTRACT_TASK__SUBTASKS);
-		}
-		return subtasks;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Dependency getDependency() {
 		return dependency;
 	}
@@ -230,6 +227,29 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 	 * @generated
 	 */
 	@Override
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setId(int newId) {
+		int oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, GpxPackage.ABSTRACT_TASK__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case GpxPackage.ABSTRACT_TASK__DEPENDENCY:
@@ -248,8 +268,6 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GpxPackage.ABSTRACT_TASK__SUBTASKS:
-				return ((InternalEList<?>)getSubtasks()).basicRemove(otherEnd, msgs);
 			case GpxPackage.ABSTRACT_TASK__DEPENDENCY:
 				return basicSetDependency(null, msgs);
 		}
@@ -268,10 +286,10 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 				return getName();
 			case GpxPackage.ABSTRACT_TASK__END_DATE:
 				return getEndDate();
-			case GpxPackage.ABSTRACT_TASK__SUBTASKS:
-				return getSubtasks();
 			case GpxPackage.ABSTRACT_TASK__DEPENDENCY:
 				return getDependency();
+			case GpxPackage.ABSTRACT_TASK__ID:
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -291,12 +309,11 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 			case GpxPackage.ABSTRACT_TASK__END_DATE:
 				setEndDate((Date)newValue);
 				return;
-			case GpxPackage.ABSTRACT_TASK__SUBTASKS:
-				getSubtasks().clear();
-				getSubtasks().addAll((Collection<? extends AbstractTask>)newValue);
-				return;
 			case GpxPackage.ABSTRACT_TASK__DEPENDENCY:
 				setDependency((Dependency)newValue);
+				return;
+			case GpxPackage.ABSTRACT_TASK__ID:
+				setId((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -316,11 +333,11 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 			case GpxPackage.ABSTRACT_TASK__END_DATE:
 				setEndDate(END_DATE_EDEFAULT);
 				return;
-			case GpxPackage.ABSTRACT_TASK__SUBTASKS:
-				getSubtasks().clear();
-				return;
 			case GpxPackage.ABSTRACT_TASK__DEPENDENCY:
 				setDependency((Dependency)null);
+				return;
+			case GpxPackage.ABSTRACT_TASK__ID:
+				setId(ID_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -338,10 +355,10 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case GpxPackage.ABSTRACT_TASK__END_DATE:
 				return END_DATE_EDEFAULT == null ? endDate != null : !END_DATE_EDEFAULT.equals(endDate);
-			case GpxPackage.ABSTRACT_TASK__SUBTASKS:
-				return subtasks != null && !subtasks.isEmpty();
 			case GpxPackage.ABSTRACT_TASK__DEPENDENCY:
 				return dependency != null;
+			case GpxPackage.ABSTRACT_TASK__ID:
+				return id != ID_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -360,6 +377,8 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 		result.append(name);
 		result.append(", endDate: ");
 		result.append(endDate);
+		result.append(", id: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}

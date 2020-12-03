@@ -195,7 +195,7 @@ public class GpxPackageImpl extends EPackageImpl implements GpxPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractTask_Subtasks() {
+	public EReference getAbstractTask_Dependency() {
 		return (EReference)abstractTaskEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -205,8 +205,8 @@ public class GpxPackageImpl extends EPackageImpl implements GpxPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getAbstractTask_Dependency() {
-		return (EReference)abstractTaskEClass.getEStructuralFeatures().get(3);
+	public EAttribute getAbstractTask_Id() {
+		return (EAttribute)abstractTaskEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -247,6 +247,16 @@ public class GpxPackageImpl extends EPackageImpl implements GpxPackage {
 	@Override
 	public EAttribute getTask_StartDate() {
 		return (EAttribute)taskEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTask_Subtasks() {
+		return (EReference)taskEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -335,13 +345,14 @@ public class GpxPackageImpl extends EPackageImpl implements GpxPackage {
 		abstractTaskEClass = createEClass(ABSTRACT_TASK);
 		createEAttribute(abstractTaskEClass, ABSTRACT_TASK__NAME);
 		createEAttribute(abstractTaskEClass, ABSTRACT_TASK__END_DATE);
-		createEReference(abstractTaskEClass, ABSTRACT_TASK__SUBTASKS);
 		createEReference(abstractTaskEClass, ABSTRACT_TASK__DEPENDENCY);
+		createEAttribute(abstractTaskEClass, ABSTRACT_TASK__ID);
 
 		taskEClass = createEClass(TASK);
 		createEAttribute(taskEClass, TASK__DURATION);
 		createEAttribute(taskEClass, TASK__DURATION_UNIT);
 		createEAttribute(taskEClass, TASK__START_DATE);
+		createEReference(taskEClass, TASK__SUBTASKS);
 
 		milestoneEClass = createEClass(MILESTONE);
 
@@ -392,13 +403,14 @@ public class GpxPackageImpl extends EPackageImpl implements GpxPackage {
 		initEClass(abstractTaskEClass, AbstractTask.class, "AbstractTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractTask_Name(), ecorePackage.getEString(), "name", null, 0, 1, AbstractTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractTask_EndDate(), ecorePackage.getEDate(), "endDate", null, 0, 1, AbstractTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractTask_Subtasks(), this.getAbstractTask(), null, "subtasks", null, 0, -1, AbstractTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractTask_Dependency(), this.getDependency(), this.getDependency_Dependant(), "dependency", null, 0, 1, AbstractTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAbstractTask_Id(), ecorePackage.getEInt(), "id", null, 0, 1, AbstractTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTask_Duration(), ecorePackage.getEInt(), "duration", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTask_DurationUnit(), this.getDURATION_UNIT(), "durationUnit", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTask_StartDate(), ecorePackage.getEDate(), "startDate", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTask_Subtasks(), this.getAbstractTask(), null, "subtasks", null, 0, -1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
