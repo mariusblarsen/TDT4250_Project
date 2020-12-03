@@ -3,6 +3,12 @@
  */
 package tdt4250.ganttproject.validation;
 
+import java.util.Date;
+
+import org.eclipse.xtext.validation.Check;
+
+import tdt4250.ganttproject.gpx.GpxPackage;
+import tdt4250.ganttproject.gpx.Task;
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +17,63 @@ package tdt4250.ganttproject.validation;
  */
 public class GpxValidator extends AbstractGpxValidator {
 	
-//	public static final String INVALID_NAME = "invalidName";
-//
-//	@Check
-//	public void checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-//			warning("Name should start with a capital",
-//					GpxPackage.Literals.GREETING__NAME,
-//					INVALID_NAME);
-//		}
-//	}
+	public static final String END_DATE_NOT_EXPECTED = "Task %s: end date cannot be explicitly specified for a task with subtasks";
+	public static final String END_DATE_EARLIER_THAN_START_DATE = "Task %: end date cannot be before than start date";
+	public static final String DURATION_NOT_EXPECTED = "Task %s: duration cannot be explicitly specified for a task with subtasks";
+	public static final String DURATION_EXPECTED = "Task %s: no duration specified";
+	public static final String START_DATE_NOT_EXPECTED_WITH_SUBTASKS = "Task %s: start date cannot be explicitly specified for a task with subtasks";
+	public static final String START_DATE_NOT_EXPECTED_WITH_DEPENDENCIES = "Task %s: start date cannot be explicitly specified for a task which depends on other tasks";
+	public static final String START_DATE_EXPECTED = "Task %s: no start date specified";
+	
+	@Check
+	public void checkTaskEndDateConsistent(Task task) {
+		Date endDate = task.getEndDate();
+		
+		if (endDate != null) {
+			if (!task.getSubtasks().isEmpty()) {
+				error(formatMessage(END_DATE_NOT_EXPECTED, task.getName()), GpxPackage.Literals.ABSTRACT_TASK__END_DATE);
+			} else {
+				Date startDate = task.getStartDate();
+				if (startDate != null && (startDate.after(endDate))) {
+					error(formatMessage(END_DATE_EARLIER_THAN_START_DATE, task.getName()), GpxPackage.Literals.ABSTRACT_TASK__END_DATE);
+				}
+			}
+		}
+	}
+	
+	@Check
+	public void checkTaskDurationConsistent(Task task) {
+		int duration = task.getDuration();
+				
+		if (!task.getSubtasks().isEmpty()) {
+			if (duration > 0) {
+				error(formatMessage(DURATION_NOT_EXPECTED, task.getName()), GpxPackage.Literals.TASK__DURATION);
+			}			 
+		} else if (duration == 0 && task.getEndDate() == null) {
+			error(formatMessage(DURATION_EXPECTED, task.getName()), GpxPackage.Literals.TASK__DURATION);
+		}
+	}
+	
+	@Check
+	public void checkTaskStartDateConsistent(Task task) {
+		Date startDate = task.getStartDate();
+				
+		if (!task.getSubtasks().isEmpty()) {
+			if (startDate != null) {
+				error(formatMessage(START_DATE_NOT_EXPECTED_WITH_SUBTASKS, task.getName()), GpxPackage.Literals.TASK__START_DATE);
+			}			 
+		} else if (task.getDependency() != null) {
+			if (startDate != null) {
+				//TODO: dependencies could be different... not necessarily Finish -  Start -> extra checks are needed
+				error(formatMessage(START_DATE_NOT_EXPECTED_WITH_DEPENDENCIES, task.getName()), GpxPackage.Literals.TASK__START_DATE);
+			}
+		} else if (startDate == null) {
+			error(formatMessage(START_DATE_EXPECTED, task.getName()), GpxPackage.Literals.TASK__START_DATE);
+		}
+	}
+	
+	private String formatMessage(String template, String...params) {
+		return String.format(template, params);
+	}
 	
 }

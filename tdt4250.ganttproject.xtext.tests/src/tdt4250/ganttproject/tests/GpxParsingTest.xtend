@@ -16,6 +16,12 @@ import tdt4250.ganttproject.gpx.Task
 import tdt4250.ganttproject.gpx.Milestone
 import java.util.Date
 import tdt4250.ganttproject.gpx.GpxPackage
+import org.eclipse.xtext.validation.IResourceValidator
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.validation.Issue
+import java.util.List
+import org.eclipse.xtext.validation.CheckMode
+import org.eclipse.xtext.util.CancelIndicator
 
 @ExtendWith(InjectionExtension)
 @InjectWith(GpxInjectorProvider)
@@ -23,6 +29,9 @@ class GpxParsingTest {
 	@Inject
 	ParseHelper<Project> parseHelper
 	
+	@Inject
+	IResourceValidator resourceValidator
+		
 	@Test
 	def void loadModel() {
 		GpxPackage.eINSTANCE.eClass
@@ -82,6 +91,13 @@ Task 'Task 4' lasts 10 days, depends on 'Task 3.1'
 			System.out.println("All good! (y)")
 		else
 			System.out.println(errors)
-		//Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+			
+		val List<Issue> issues = resourceValidator.validate(result.eResource,
+            CheckMode.ALL, CancelIndicator.NullImpl);
+        for (Issue issue: issues) {
+            System.out.println(issue.severity + ":" + issue.message + "(line: " + issue.lineNumber + ")");
+        }
+        //Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 	}
+
 }
