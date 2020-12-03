@@ -10,3 +10,12 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase,
  org.eclipse.equinox.common;bundle-version="3.5.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: tdt4250.ganttproject,
+ tdt4250.ganttproject.generator,
+ tdt4250.ganttproject.gpx,
+ tdt4250.ganttproject.parser.antlr,
+ tdt4250.ganttproject.parser.antlr.internal,
+ tdt4250.ganttproject.scoping,
+ tdt4250.ganttproject.serializer,
+ tdt4250.ganttproject.services,
+ tdt4250.ganttproject.validation

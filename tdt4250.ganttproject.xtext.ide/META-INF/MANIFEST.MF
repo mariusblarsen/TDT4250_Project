@@ -10,3 +10,5 @@ Require-Bundle: tdt4250.ganttproject.xtext,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: tdt4250.ganttproject.ide.contentassist.antlr,
+ tdt4250.ganttproject.ide.contentassist.antlr.internal

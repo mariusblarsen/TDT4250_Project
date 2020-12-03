@@ -12,3 +12,4 @@ Require-Bundle: tdt4250.ganttproject.xtext.ui,
  org.eclipse.xtext.xbase.testing,
  org.eclipse.xtext.xbase.junit
 Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: tdt4250.ganttproject.ui.tests
