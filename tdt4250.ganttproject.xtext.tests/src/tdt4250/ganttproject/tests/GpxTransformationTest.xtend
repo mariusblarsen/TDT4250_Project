@@ -39,7 +39,7 @@ Milestone 'Phase 1' planned 27.11.20, depends on 'Task 2';
 Task 'Task 3' depends on 'Phase 1'{
 	Task 'Task 3.1' from 29.11.20 due 30.11.20;
 	Task 'Task 3.2' lasts 1 day;
-	Task 'Task 3.3' lasts 1 week, depends on 'Task 3.1', 'Task 1'
+	Task 'Task 3.3' lasts 3 week, depends on 'Task 3.1', 'Task 1'
 };
 Task 'Task 4' lasts 10 days, depends on 'Task 3.1'
 		''')

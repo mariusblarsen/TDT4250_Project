@@ -10,6 +10,7 @@ import tdt4250.ganttproject.gpx.Milestone
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Date
+import tdt4250.ganttproject.gpx.DURATION_UNIT
 
 /**
  * Generates code from your model files on save.
@@ -99,15 +100,18 @@ class GpxCustomGenerator {
         stringBuilder << "
 			</task>"
 	}
-	
-		def static dispatch void generateTask(Task task, StringBuilder stringBuilder) {
+	def static dispatch void generateTask(Task task, StringBuilder stringBuilder) {
 		stringBuilder << '''
-			<task id="«task.id»" name="«task.name»" color="#990066" meeting="false" start="«task.endDate != null? convertDate(task.startDate) : 0»" duration="«task.duration»" complete="0" thirdDate="«task.endDate != null? convertDate(task.endDate) : 0»" thirdDate-constraint="0" expand="true">
+			<task id="«task.id»" name="«task.name»" color="#990066" meeting="false" start="«task.endDate != null? convertDate(task.startDate) : 0»" duration="«adjustDurationToDays(task)»" complete="0" thirdDate="«task.endDate != null? convertDate(task.endDate) : 0»" thirdDate-constraint="0" expand="true">
 '''
 //TODO list tasks which DEPEND on the current one /either bi-directional links in model or derived feature
         task.subtasks.forEach[generateTask(it, stringBuilder)]
         stringBuilder << "
 			</task>"
+	}
+	
+	def static int adjustDurationToDays(Task t) {
+		return t.durationUnit == DURATION_UNIT.WEEK ? t.duration * 7 : t.duration	
 	}
 		
 	def static void generateCommonEnding(StringBuilder stringBuilder) {
