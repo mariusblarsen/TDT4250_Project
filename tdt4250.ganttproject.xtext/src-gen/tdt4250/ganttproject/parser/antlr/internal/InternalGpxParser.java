@@ -1232,7 +1232,7 @@ public class InternalGpxParser extends AbstractInternalAntlrParser {
             				
             otherlv_0=(Token)match(input,RULE_STRING,FOLLOW_19); 
 
-            					newLeafNode(otherlv_0, grammarAccess.getDependencyAccess().getMasterAbstractTaskCrossReference_0_0());
+            					newLeafNode(otherlv_0, grammarAccess.getDependencyAccess().getDependeesAbstractTaskCrossReference_0_0());
             				
 
             }
@@ -1272,7 +1272,7 @@ public class InternalGpxParser extends AbstractInternalAntlrParser {
             	    					
             	    otherlv_2=(Token)match(input,RULE_STRING,FOLLOW_19); 
 
-            	    						newLeafNode(otherlv_2, grammarAccess.getDependencyAccess().getMasterAbstractTaskCrossReference_1_1_0());
+            	    						newLeafNode(otherlv_2, grammarAccess.getDependencyAccess().getDependeesAbstractTaskCrossReference_1_1_0());
             	    					
 
             	    }

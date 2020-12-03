@@ -1367,9 +1367,9 @@ rule__Dependency__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getDependencyAccess().getMasterAssignment_0()); }
-	(rule__Dependency__MasterAssignment_0)
-	{ after(grammarAccess.getDependencyAccess().getMasterAssignment_0()); }
+	{ before(grammarAccess.getDependencyAccess().getDependeesAssignment_0()); }
+	(rule__Dependency__DependeesAssignment_0)
+	{ after(grammarAccess.getDependencyAccess().getDependeesAssignment_0()); }
 )
 ;
 finally {
@@ -1447,9 +1447,9 @@ rule__Dependency__Group_1__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getDependencyAccess().getMasterAssignment_1_1()); }
-	(rule__Dependency__MasterAssignment_1_1)
-	{ after(grammarAccess.getDependencyAccess().getMasterAssignment_1_1()); }
+	{ before(grammarAccess.getDependencyAccess().getDependeesAssignment_1_1()); }
+	(rule__Dependency__DependeesAssignment_1_1)
+	{ after(grammarAccess.getDependencyAccess().getDependeesAssignment_1_1()); }
 )
 ;
 finally {
@@ -1823,38 +1823,38 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Dependency__MasterAssignment_0
+rule__Dependency__DependeesAssignment_0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getDependencyAccess().getMasterAbstractTaskCrossReference_0_0()); }
+		{ before(grammarAccess.getDependencyAccess().getDependeesAbstractTaskCrossReference_0_0()); }
 		(
-			{ before(grammarAccess.getDependencyAccess().getMasterAbstractTaskSTRINGTerminalRuleCall_0_0_1()); }
+			{ before(grammarAccess.getDependencyAccess().getDependeesAbstractTaskSTRINGTerminalRuleCall_0_0_1()); }
 			RULE_STRING
-			{ after(grammarAccess.getDependencyAccess().getMasterAbstractTaskSTRINGTerminalRuleCall_0_0_1()); }
+			{ after(grammarAccess.getDependencyAccess().getDependeesAbstractTaskSTRINGTerminalRuleCall_0_0_1()); }
 		)
-		{ after(grammarAccess.getDependencyAccess().getMasterAbstractTaskCrossReference_0_0()); }
+		{ after(grammarAccess.getDependencyAccess().getDependeesAbstractTaskCrossReference_0_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Dependency__MasterAssignment_1_1
+rule__Dependency__DependeesAssignment_1_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getDependencyAccess().getMasterAbstractTaskCrossReference_1_1_0()); }
+		{ before(grammarAccess.getDependencyAccess().getDependeesAbstractTaskCrossReference_1_1_0()); }
 		(
-			{ before(grammarAccess.getDependencyAccess().getMasterAbstractTaskSTRINGTerminalRuleCall_1_1_0_1()); }
+			{ before(grammarAccess.getDependencyAccess().getDependeesAbstractTaskSTRINGTerminalRuleCall_1_1_0_1()); }
 			RULE_STRING
-			{ after(grammarAccess.getDependencyAccess().getMasterAbstractTaskSTRINGTerminalRuleCall_1_1_0_1()); }
+			{ after(grammarAccess.getDependencyAccess().getDependeesAbstractTaskSTRINGTerminalRuleCall_1_1_0_1()); }
 		)
-		{ after(grammarAccess.getDependencyAccess().getMasterAbstractTaskCrossReference_1_1_0()); }
+		{ after(grammarAccess.getDependencyAccess().getDependeesAbstractTaskCrossReference_1_1_0()); }
 	)
 ;
 finally {

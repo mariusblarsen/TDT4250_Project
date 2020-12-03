@@ -55,7 +55,7 @@ public class GpxSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Dependency returns Dependency
 	 *
 	 * Constraint:
-	 *     (master+=[AbstractTask|STRING] master+=[AbstractTask|STRING]*)
+	 *     (dependees+=[AbstractTask|STRING] dependees+=[AbstractTask|STRING]*)
 	 */
 	protected void sequence_Dependency(ISerializationContext context, Dependency semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

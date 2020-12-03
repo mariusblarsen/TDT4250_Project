@@ -300,49 +300,49 @@ public class GpxGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	public class DependencyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "tdt4250.ganttproject.Gpx.Dependency");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cMasterAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cMasterAbstractTaskCrossReference_0_0 = (CrossReference)cMasterAssignment_0.eContents().get(0);
-		private final RuleCall cMasterAbstractTaskSTRINGTerminalRuleCall_0_0_1 = (RuleCall)cMasterAbstractTaskCrossReference_0_0.eContents().get(1);
+		private final Assignment cDependeesAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cDependeesAbstractTaskCrossReference_0_0 = (CrossReference)cDependeesAssignment_0.eContents().get(0);
+		private final RuleCall cDependeesAbstractTaskSTRINGTerminalRuleCall_0_0_1 = (RuleCall)cDependeesAbstractTaskCrossReference_0_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cMasterAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final CrossReference cMasterAbstractTaskCrossReference_1_1_0 = (CrossReference)cMasterAssignment_1_1.eContents().get(0);
-		private final RuleCall cMasterAbstractTaskSTRINGTerminalRuleCall_1_1_0_1 = (RuleCall)cMasterAbstractTaskCrossReference_1_1_0.eContents().get(1);
+		private final Assignment cDependeesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final CrossReference cDependeesAbstractTaskCrossReference_1_1_0 = (CrossReference)cDependeesAssignment_1_1.eContents().get(0);
+		private final RuleCall cDependeesAbstractTaskSTRINGTerminalRuleCall_1_1_0_1 = (RuleCall)cDependeesAbstractTaskCrossReference_1_1_0.eContents().get(1);
 		
 		////((',')? 'depends' 'on' dependenciesAsDependant+=Dependency (','  dependenciesAsDependant+=Dependency)*)?;
 		////separate entity because it's going to be extended with extra characteristics, not just task by itself
 		//Dependency:
-		//	master+=[AbstractTask|STRING] (',' master+=[AbstractTask|STRING])*
+		//	dependees+=[AbstractTask|STRING] (',' dependees+=[AbstractTask|STRING])*
 		//	//dependee=[AbstractTask|STRING]
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//master+=[AbstractTask|STRING] (',' master+=[AbstractTask|STRING])*
+		//dependees+=[AbstractTask|STRING] (',' dependees+=[AbstractTask|STRING])*
 		public Group getGroup() { return cGroup; }
 		
-		//master+=[AbstractTask|STRING]
-		public Assignment getMasterAssignment_0() { return cMasterAssignment_0; }
+		//dependees+=[AbstractTask|STRING]
+		public Assignment getDependeesAssignment_0() { return cDependeesAssignment_0; }
 		
 		//[AbstractTask|STRING]
-		public CrossReference getMasterAbstractTaskCrossReference_0_0() { return cMasterAbstractTaskCrossReference_0_0; }
+		public CrossReference getDependeesAbstractTaskCrossReference_0_0() { return cDependeesAbstractTaskCrossReference_0_0; }
 		
 		//STRING
-		public RuleCall getMasterAbstractTaskSTRINGTerminalRuleCall_0_0_1() { return cMasterAbstractTaskSTRINGTerminalRuleCall_0_0_1; }
+		public RuleCall getDependeesAbstractTaskSTRINGTerminalRuleCall_0_0_1() { return cDependeesAbstractTaskSTRINGTerminalRuleCall_0_0_1; }
 		
-		//(',' master+=[AbstractTask|STRING])*
+		//(',' dependees+=[AbstractTask|STRING])*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//','
 		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 		
-		//master+=[AbstractTask|STRING]
-		public Assignment getMasterAssignment_1_1() { return cMasterAssignment_1_1; }
+		//dependees+=[AbstractTask|STRING]
+		public Assignment getDependeesAssignment_1_1() { return cDependeesAssignment_1_1; }
 		
 		//[AbstractTask|STRING]
-		public CrossReference getMasterAbstractTaskCrossReference_1_1_0() { return cMasterAbstractTaskCrossReference_1_1_0; }
+		public CrossReference getDependeesAbstractTaskCrossReference_1_1_0() { return cDependeesAbstractTaskCrossReference_1_1_0; }
 		
 		//STRING
-		public RuleCall getMasterAbstractTaskSTRINGTerminalRuleCall_1_1_0_1() { return cMasterAbstractTaskSTRINGTerminalRuleCall_1_1_0_1; }
+		public RuleCall getDependeesAbstractTaskSTRINGTerminalRuleCall_1_1_0_1() { return cDependeesAbstractTaskSTRINGTerminalRuleCall_1_1_0_1; }
 	}
 	public class DateElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "tdt4250.ganttproject.Gpx.Date");
@@ -519,7 +519,7 @@ public class GpxGrammarAccess extends AbstractElementFinder.AbstractGrammarEleme
 	////((',')? 'depends' 'on' dependenciesAsDependant+=Dependency (','  dependenciesAsDependant+=Dependency)*)?;
 	////separate entity because it's going to be extended with extra characteristics, not just task by itself
 	//Dependency:
-	//	master+=[AbstractTask|STRING] (',' master+=[AbstractTask|STRING])*
+	//	dependees+=[AbstractTask|STRING] (',' dependees+=[AbstractTask|STRING])*
 	//	//dependee=[AbstractTask|STRING]
 	//;
 	public DependencyElements getDependencyAccess() {

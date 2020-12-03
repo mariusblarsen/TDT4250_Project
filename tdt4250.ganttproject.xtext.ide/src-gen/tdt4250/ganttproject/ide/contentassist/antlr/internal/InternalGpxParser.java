@@ -4169,31 +4169,31 @@ public class InternalGpxParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Dependency__Group__0__Impl"
-    // InternalGpx.g:1364:1: rule__Dependency__Group__0__Impl : ( ( rule__Dependency__MasterAssignment_0 ) ) ;
+    // InternalGpx.g:1364:1: rule__Dependency__Group__0__Impl : ( ( rule__Dependency__DependeesAssignment_0 ) ) ;
     public final void rule__Dependency__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalGpx.g:1368:1: ( ( ( rule__Dependency__MasterAssignment_0 ) ) )
-            // InternalGpx.g:1369:1: ( ( rule__Dependency__MasterAssignment_0 ) )
+            // InternalGpx.g:1368:1: ( ( ( rule__Dependency__DependeesAssignment_0 ) ) )
+            // InternalGpx.g:1369:1: ( ( rule__Dependency__DependeesAssignment_0 ) )
             {
-            // InternalGpx.g:1369:1: ( ( rule__Dependency__MasterAssignment_0 ) )
-            // InternalGpx.g:1370:2: ( rule__Dependency__MasterAssignment_0 )
+            // InternalGpx.g:1369:1: ( ( rule__Dependency__DependeesAssignment_0 ) )
+            // InternalGpx.g:1370:2: ( rule__Dependency__DependeesAssignment_0 )
             {
-             before(grammarAccess.getDependencyAccess().getMasterAssignment_0()); 
-            // InternalGpx.g:1371:2: ( rule__Dependency__MasterAssignment_0 )
-            // InternalGpx.g:1371:3: rule__Dependency__MasterAssignment_0
+             before(grammarAccess.getDependencyAccess().getDependeesAssignment_0()); 
+            // InternalGpx.g:1371:2: ( rule__Dependency__DependeesAssignment_0 )
+            // InternalGpx.g:1371:3: rule__Dependency__DependeesAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__Dependency__MasterAssignment_0();
+            rule__Dependency__DependeesAssignment_0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getDependencyAccess().getMasterAssignment_0()); 
+             after(grammarAccess.getDependencyAccess().getDependeesAssignment_0()); 
 
             }
 
@@ -4422,31 +4422,31 @@ public class InternalGpxParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Dependency__Group_1__1__Impl"
-    // InternalGpx.g:1444:1: rule__Dependency__Group_1__1__Impl : ( ( rule__Dependency__MasterAssignment_1_1 ) ) ;
+    // InternalGpx.g:1444:1: rule__Dependency__Group_1__1__Impl : ( ( rule__Dependency__DependeesAssignment_1_1 ) ) ;
     public final void rule__Dependency__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalGpx.g:1448:1: ( ( ( rule__Dependency__MasterAssignment_1_1 ) ) )
-            // InternalGpx.g:1449:1: ( ( rule__Dependency__MasterAssignment_1_1 ) )
+            // InternalGpx.g:1448:1: ( ( ( rule__Dependency__DependeesAssignment_1_1 ) ) )
+            // InternalGpx.g:1449:1: ( ( rule__Dependency__DependeesAssignment_1_1 ) )
             {
-            // InternalGpx.g:1449:1: ( ( rule__Dependency__MasterAssignment_1_1 ) )
-            // InternalGpx.g:1450:2: ( rule__Dependency__MasterAssignment_1_1 )
+            // InternalGpx.g:1449:1: ( ( rule__Dependency__DependeesAssignment_1_1 ) )
+            // InternalGpx.g:1450:2: ( rule__Dependency__DependeesAssignment_1_1 )
             {
-             before(grammarAccess.getDependencyAccess().getMasterAssignment_1_1()); 
-            // InternalGpx.g:1451:2: ( rule__Dependency__MasterAssignment_1_1 )
-            // InternalGpx.g:1451:3: rule__Dependency__MasterAssignment_1_1
+             before(grammarAccess.getDependencyAccess().getDependeesAssignment_1_1()); 
+            // InternalGpx.g:1451:2: ( rule__Dependency__DependeesAssignment_1_1 )
+            // InternalGpx.g:1451:3: rule__Dependency__DependeesAssignment_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__Dependency__MasterAssignment_1_1();
+            rule__Dependency__DependeesAssignment_1_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getDependencyAccess().getMasterAssignment_1_1()); 
+             after(grammarAccess.getDependencyAccess().getDependeesAssignment_1_1()); 
 
             }
 
@@ -5531,9 +5531,9 @@ public class InternalGpxParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Milestone__DependencyAssignment_4_3"
 
 
-    // $ANTLR start "rule__Dependency__MasterAssignment_0"
-    // InternalGpx.g:1826:1: rule__Dependency__MasterAssignment_0 : ( ( RULE_STRING ) ) ;
-    public final void rule__Dependency__MasterAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__Dependency__DependeesAssignment_0"
+    // InternalGpx.g:1826:1: rule__Dependency__DependeesAssignment_0 : ( ( RULE_STRING ) ) ;
+    public final void rule__Dependency__DependeesAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -5544,17 +5544,17 @@ public class InternalGpxParser extends AbstractInternalContentAssistParser {
             // InternalGpx.g:1831:2: ( ( RULE_STRING ) )
             // InternalGpx.g:1832:3: ( RULE_STRING )
             {
-             before(grammarAccess.getDependencyAccess().getMasterAbstractTaskCrossReference_0_0()); 
+             before(grammarAccess.getDependencyAccess().getDependeesAbstractTaskCrossReference_0_0()); 
             // InternalGpx.g:1833:3: ( RULE_STRING )
             // InternalGpx.g:1834:4: RULE_STRING
             {
-             before(grammarAccess.getDependencyAccess().getMasterAbstractTaskSTRINGTerminalRuleCall_0_0_1()); 
+             before(grammarAccess.getDependencyAccess().getDependeesAbstractTaskSTRINGTerminalRuleCall_0_0_1()); 
             match(input,RULE_STRING,FOLLOW_2); 
-             after(grammarAccess.getDependencyAccess().getMasterAbstractTaskSTRINGTerminalRuleCall_0_0_1()); 
+             after(grammarAccess.getDependencyAccess().getDependeesAbstractTaskSTRINGTerminalRuleCall_0_0_1()); 
 
             }
 
-             after(grammarAccess.getDependencyAccess().getMasterAbstractTaskCrossReference_0_0()); 
+             after(grammarAccess.getDependencyAccess().getDependeesAbstractTaskCrossReference_0_0()); 
 
             }
 
@@ -5573,12 +5573,12 @@ public class InternalGpxParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Dependency__MasterAssignment_0"
+    // $ANTLR end "rule__Dependency__DependeesAssignment_0"
 
 
-    // $ANTLR start "rule__Dependency__MasterAssignment_1_1"
-    // InternalGpx.g:1845:1: rule__Dependency__MasterAssignment_1_1 : ( ( RULE_STRING ) ) ;
-    public final void rule__Dependency__MasterAssignment_1_1() throws RecognitionException {
+    // $ANTLR start "rule__Dependency__DependeesAssignment_1_1"
+    // InternalGpx.g:1845:1: rule__Dependency__DependeesAssignment_1_1 : ( ( RULE_STRING ) ) ;
+    public final void rule__Dependency__DependeesAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -5589,17 +5589,17 @@ public class InternalGpxParser extends AbstractInternalContentAssistParser {
             // InternalGpx.g:1850:2: ( ( RULE_STRING ) )
             // InternalGpx.g:1851:3: ( RULE_STRING )
             {
-             before(grammarAccess.getDependencyAccess().getMasterAbstractTaskCrossReference_1_1_0()); 
+             before(grammarAccess.getDependencyAccess().getDependeesAbstractTaskCrossReference_1_1_0()); 
             // InternalGpx.g:1852:3: ( RULE_STRING )
             // InternalGpx.g:1853:4: RULE_STRING
             {
-             before(grammarAccess.getDependencyAccess().getMasterAbstractTaskSTRINGTerminalRuleCall_1_1_0_1()); 
+             before(grammarAccess.getDependencyAccess().getDependeesAbstractTaskSTRINGTerminalRuleCall_1_1_0_1()); 
             match(input,RULE_STRING,FOLLOW_2); 
-             after(grammarAccess.getDependencyAccess().getMasterAbstractTaskSTRINGTerminalRuleCall_1_1_0_1()); 
+             after(grammarAccess.getDependencyAccess().getDependeesAbstractTaskSTRINGTerminalRuleCall_1_1_0_1()); 
 
             }
 
-             after(grammarAccess.getDependencyAccess().getMasterAbstractTaskCrossReference_1_1_0()); 
+             after(grammarAccess.getDependencyAccess().getDependeesAbstractTaskCrossReference_1_1_0()); 
 
             }
 
@@ -5618,7 +5618,7 @@ public class InternalGpxParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Dependency__MasterAssignment_1_1"
+    // $ANTLR end "rule__Dependency__DependeesAssignment_1_1"
 
     // Delegated rules
 

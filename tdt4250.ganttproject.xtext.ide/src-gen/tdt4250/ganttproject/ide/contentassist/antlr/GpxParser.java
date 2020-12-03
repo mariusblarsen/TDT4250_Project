@@ -62,8 +62,8 @@ public class GpxParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMilestoneAccess().getNameAssignment_1(), "rule__Milestone__NameAssignment_1");
 			builder.put(grammarAccess.getMilestoneAccess().getEndDateAssignment_3(), "rule__Milestone__EndDateAssignment_3");
 			builder.put(grammarAccess.getMilestoneAccess().getDependencyAssignment_4_3(), "rule__Milestone__DependencyAssignment_4_3");
-			builder.put(grammarAccess.getDependencyAccess().getMasterAssignment_0(), "rule__Dependency__MasterAssignment_0");
-			builder.put(grammarAccess.getDependencyAccess().getMasterAssignment_1_1(), "rule__Dependency__MasterAssignment_1_1");
+			builder.put(grammarAccess.getDependencyAccess().getDependeesAssignment_0(), "rule__Dependency__DependeesAssignment_0");
+			builder.put(grammarAccess.getDependencyAccess().getDependeesAssignment_1_1(), "rule__Dependency__DependeesAssignment_1_1");
 		}
 	}
 	
