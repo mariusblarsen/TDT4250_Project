@@ -15,19 +15,31 @@ public class GpxDerivedStateComputer implements IDerivedStateComputer {
 	
 	@Override
 	public void installDerivedState(DerivedStateAwareResource resource, boolean preLinkingPhase) {
-		 EObject root = resource.getContents().get(0);
+		if (resource == null || resource.getContents().isEmpty()) {
+			return;
+		}
+		EObject root = resource.getContents().get(0);
 		 if (root instanceof Project) {
 			Project project = (Project) root;
-			initializeTasks(project.getTasks(), false);
+			EList<AbstractTask> tasks = project.getTasks();
+			if (!tasks.isEmpty()) {
+				initializeTasks(project.getTasks(), false);
+			}
 		 }
 	}
 
 	@Override
 	public void discardDerivedState(DerivedStateAwareResource resource) {
+		if (resource == null || resource.getContents().isEmpty()) {
+			return;
+		}
 		EList<EObject> result = resource.getContents();
 		if (result instanceof Project) {
 			Project project = (Project) result;
-			initializeTasks(project.getTasks(), true);
+			EList<AbstractTask> tasks = project.getTasks();
+			if (!tasks.isEmpty()) {
+				initializeTasks(project.getTasks(), true);
+			}
 		}
 	}
 	
@@ -35,7 +47,10 @@ public class GpxDerivedStateComputer implements IDerivedStateComputer {
 		for (AbstractTask t : tasks) {
 			t.setId(discardState? null : counter++);
 			if (t instanceof Task) {
-				initializeTasks(((Task) t).getSubtasks(), discardState);
+				EList<AbstractTask> subtasks = ((Task) t).getSubtasks();
+				if (!subtasks.isEmpty()) {
+					initializeTasks(subtasks, false);
+				}
 			}
 		}
 	}

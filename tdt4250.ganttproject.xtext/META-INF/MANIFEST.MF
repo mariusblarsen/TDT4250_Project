@@ -8,7 +8,10 @@ Bundle-SymbolicName: tdt4250.ganttproject.xtext; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase,
- org.eclipse.equinox.common;bundle-version="3.5.0"
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: tdt4250.ganttproject,
  tdt4250.ganttproject.generator,
@@ -19,3 +22,4 @@ Export-Package: tdt4250.ganttproject,
  tdt4250.ganttproject.serializer,
  tdt4250.ganttproject.services,
  tdt4250.ganttproject.validation
+Import-Package: org.apache.log4j
