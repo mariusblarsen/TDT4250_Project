@@ -11,7 +11,7 @@ import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import tdt4250.ganttproject.GpxCustomGenerator;
+import tdt4250.ganttproject.generator.GpxCustomGenerator;
 import tdt4250.ganttproject.gpx.GpxPackage;
 import tdt4250.ganttproject.gpx.Project;
 import tdt4250.ganttproject.tests.GpxInjectorProvider;

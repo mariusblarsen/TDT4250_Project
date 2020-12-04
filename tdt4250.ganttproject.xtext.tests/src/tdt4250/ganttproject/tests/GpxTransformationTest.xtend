@@ -7,16 +7,11 @@ import com.google.inject.Inject
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.extensions.InjectionExtension
 import org.eclipse.xtext.testing.util.ParseHelper
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
-import tdt4250.ganttproject.gpx.Project
-import tdt4250.ganttproject.gpx.DURATION_UNIT
-import tdt4250.ganttproject.gpx.Task
-import tdt4250.ganttproject.gpx.Milestone
-import java.util.Date
+import tdt4250.ganttproject.generator.GpxCustomGenerator
 import tdt4250.ganttproject.gpx.GpxPackage
-import tdt4250.ganttproject.GpxCustomGenerator
+import tdt4250.ganttproject.gpx.Project
 
 @ExtendWith(InjectionExtension)
 @InjectWith(GpxInjectorProvider)
@@ -46,46 +41,5 @@ Task 'Task 4' lasts 10 days, depends on 'Task 3.1'
 		
 		System.out.println(GpxCustomGenerator.generate(result))
 		
-//		Assertions.assertNotNull(result)
-//		Assertions.assertEquals("MyProject", result.name)
-//		Assertions.assertEquals(5, result.tasks.size)
-//		
-//		Assertions.assertTrue(result.tasks.get(2) instanceof Milestone)
-//		Assertions.assertTrue(result.tasks.get(3) instanceof Task)
-//			
-//		val task1 = result.tasks.get(0) as Task
-//		Assertions.assertEquals(2, task1.subtasks.size)
-//		
-//		val milestone1 = result.tasks.get(2) as Milestone
-//		Assertions.assertNotNull(milestone1.endDate)
-//		
-//		val task3 = result.tasks.get(3) as Task
-//		
-//		Assertions.assertEquals(3, task3.subtasks.size)
-//		Assertions.assertSame(milestone1, task3.dependency.dependees.get(0))
-//		
-//		val task31 = task3.subtasks.get(0) as Task
-//		val task32 = task3.subtasks.get(1) as Task
-//		val task33 = task3.subtasks.get(2) as Task
-//		
-//		var testDate = new Date(120, 10, 29)
-//		
-//		Assertions.assertEquals(testDate, task31.startDate)
-//		//Assertions.assertEquals('30.11.20', task31.endDate)
-//		Assertions.assertEquals(1, task32.duration)
-//		Assertions.assertEquals(DURATION_UNIT.DAY, task32.durationUnit)
-//		Assertions.assertEquals(1, task33.duration)
-//		Assertions.assertEquals(DURATION_UNIT.WEEK, task33.durationUnit)
-//		Assertions.assertEquals(2, task33.dependency.dependees.size)
-//		Assertions.assertSame(task31, task33.dependency.dependees.get(0))
-//		Assertions.assertSame(task1, task33.dependency.dependees.get(1))
-//		
-//		
-//		val errors = result.eResource.errors
-//		if (errors.isEmpty)
-//			System.out.println("All good! (y)")
-//		else
-//			System.out.println(errors)
-//		//Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 	}
 }
