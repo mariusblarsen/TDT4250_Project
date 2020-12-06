@@ -3,6 +3,18 @@
  */
 package tdt4250.ganttproject.scoping;
 
+import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
+import tdt4250.ganttproject.gpx.Task
+import org.eclipse.xtext.scoping.IScope
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.scoping.Scopes
+import tdt4250.ganttproject.gpx.Project
+import tdt4250.ganttproject.gpx.Dependency
+import org.eclipse.emf.ecore.EObject
+import tdt4250.ganttproject.gpx.GpxPackage
+import tdt4250.ganttproject.gpx.AbstractTask
+import org.eclipse.emf.common.util.EList
+import org.eclipse.xtext.EcoreUtil2
 
 /**
  * This class contains custom scoping description.
@@ -11,5 +23,21 @@ package tdt4250.ganttproject.scoping;
  * on how and when to use it.
  */
 public class GpxScopeProvider extends AbstractGpxScopeProvider {
-
+	override getScope(EObject context, EReference eReference){
+		switch eReference{
+			case GpxPackage.Literals.DEPENDENCY__DEPENDEES: {
+				if (context instanceof AbstractTask){
+					val project = EcoreUtil2.getRootContainer(context) as Project
+					val candidates = EcoreUtil2.getAllContentsOfType(project, AbstractTask)
+					// Remove self from scope
+					val filtered = candidates.filter([id != context.id])
+					// Known issue:
+					// Self is removed from suggestion,
+					// But no errors given if self is written.. 
+					return Scopes.scopeFor(filtered)
+				} super.getScope(context, eReference)
+			}
+		}
+		super.getScope(context, eReference)
+	}
 }
