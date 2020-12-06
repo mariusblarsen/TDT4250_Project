@@ -5,9 +5,15 @@ package tdt4250.ganttproject.validation;
 
 import java.util.Date;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 
+import tdt4250.ganttproject.gpx.AbstractTask;
+import tdt4250.ganttproject.gpx.Dependency;
 import tdt4250.ganttproject.gpx.GpxPackage;
+import tdt4250.ganttproject.gpx.Project;
 import tdt4250.ganttproject.gpx.Task;
 
 /**
@@ -24,6 +30,9 @@ public class GpxValidator extends AbstractGpxValidator {
 	public static final String START_DATE_NOT_EXPECTED_WITH_SUBTASKS = "Task %s: start date cannot be explicitly specified for a task with subtasks";
 	public static final String START_DATE_NOT_EXPECTED_WITH_DEPENDENCIES = "Task %s: start date cannot be explicitly specified for a task which depends on other tasks";
 	public static final String START_DATE_EXPECTED = "Task %s: no start date specified";
+	public static final String CIRCULAR_DEPENDENCY = "Task %s can't depend on a task already dependant on itself";
+	public static final String SELF_DEPENDENCY = "Task %s can't depend on itself";
+	
 	
 	@Check
 	public void checkTaskEndDateConsistent(Task task) {
@@ -72,8 +81,30 @@ public class GpxValidator extends AbstractGpxValidator {
 		}
 	}
 	
+	@Check
+	public void checkDependencies(AbstractTask ATask) {
+		if (ATask.getDependency() != null) {
+			for (AbstractTask masterTask: ATask.getDependency().getDependees()) {
+				if (masterTask == ATask) {
+					error(formatMessage(SELF_DEPENDENCY, ATask.getName()),
+							GpxPackage.Literals.ABSTRACT_TASK__DEPENDENCY);
+				} if (masterTask.getDependency() != null
+						&& masterTask != ATask) {
+					for (AbstractTask masterOfMasterTask: masterTask.getDependency().getDependees()) {
+						if (masterOfMasterTask == ATask) {
+							error(formatMessage(CIRCULAR_DEPENDENCY, ATask.getName()),
+															GpxPackage.Literals.ABSTRACT_TASK__DEPENDENCY);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
 	private String formatMessage(String template, String...params) {
 		return String.format(template, params);
 	}
+	
 	
 }
