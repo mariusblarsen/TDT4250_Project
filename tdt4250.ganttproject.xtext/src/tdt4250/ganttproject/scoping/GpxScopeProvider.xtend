@@ -31,9 +31,6 @@ public class GpxScopeProvider extends AbstractGpxScopeProvider {
 					val candidates = EcoreUtil2.getAllContentsOfType(project, AbstractTask)
 					// Remove self from scope
 					val filtered = candidates.filter([id != context.id])
-					// Known issue:
-					// Self is removed from suggestion,
-					// But no errors given if self is written.. 
 					return Scopes.scopeFor(filtered)
 				} super.getScope(context, eReference)
 			}
