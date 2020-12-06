@@ -21,6 +21,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpx.ecore#//AbstractTask/endDate"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Gpx.ecore#//AbstractTask/dependency"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpx.ecore#//AbstractTask/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Gpx.ecore#//AbstractTask/slaveTasks"/>
     </genClasses>
     <genClasses ecoreClass="Gpx.ecore#//Task">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Gpx.ecore#//Task/duration"/>

@@ -141,13 +141,22 @@ public interface GpxPackage extends EPackage {
 	int ABSTRACT_TASK__ID = 3;
 
 	/**
+	 * The feature id for the '<em><b>Slave Tasks</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TASK__SLAVE_TASKS = 4;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_TASK_FEATURE_COUNT = 4;
+	int ABSTRACT_TASK_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link tdt4250.ganttproject.gpx.impl.TaskImpl <em>Task</em>}' class.
@@ -194,6 +203,15 @@ public interface GpxPackage extends EPackage {
 	 * @ordered
 	 */
 	int TASK__ID = ABSTRACT_TASK__ID;
+
+	/**
+	 * The feature id for the '<em><b>Slave Tasks</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK__SLAVE_TASKS = ABSTRACT_TASK__SLAVE_TASKS;
 
 	/**
 	 * The feature id for the '<em><b>Duration</b></em>' attribute.
@@ -285,6 +303,15 @@ public interface GpxPackage extends EPackage {
 	 * @ordered
 	 */
 	int MILESTONE__ID = ABSTRACT_TASK__ID;
+
+	/**
+	 * The feature id for the '<em><b>Slave Tasks</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__SLAVE_TASKS = ABSTRACT_TASK__SLAVE_TASKS;
 
 	/**
 	 * The number of structural features of the '<em>Milestone</em>' class.
@@ -428,6 +455,17 @@ public interface GpxPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAbstractTask_Id();
+
+	/**
+	 * Returns the meta object for the reference list '{@link tdt4250.ganttproject.gpx.AbstractTask#getSlaveTasks <em>Slave Tasks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Slave Tasks</em>'.
+	 * @see tdt4250.ganttproject.gpx.AbstractTask#getSlaveTasks()
+	 * @see #getAbstractTask()
+	 * @generated
+	 */
+	EReference getAbstractTask_SlaveTasks();
 
 	/**
 	 * Returns the meta object for class '{@link tdt4250.ganttproject.gpx.Task <em>Task</em>}'.
@@ -624,6 +662,14 @@ public interface GpxPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_TASK__ID = eINSTANCE.getAbstractTask_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Slave Tasks</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ABSTRACT_TASK__SLAVE_TASKS = eINSTANCE.getAbstractTask_SlaveTasks();
 
 		/**
 		 * The meta object literal for the '{@link tdt4250.ganttproject.gpx.impl.TaskImpl <em>Task</em>}' class.

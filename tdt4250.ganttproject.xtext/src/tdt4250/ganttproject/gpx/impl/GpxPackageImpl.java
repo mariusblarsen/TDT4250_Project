@@ -215,6 +215,16 @@ public class GpxPackageImpl extends EPackageImpl implements GpxPackage {
 	 * @generated
 	 */
 	@Override
+	public EReference getAbstractTask_SlaveTasks() {
+		return (EReference)abstractTaskEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getTask() {
 		return taskEClass;
 	}
@@ -347,6 +357,7 @@ public class GpxPackageImpl extends EPackageImpl implements GpxPackage {
 		createEAttribute(abstractTaskEClass, ABSTRACT_TASK__END_DATE);
 		createEReference(abstractTaskEClass, ABSTRACT_TASK__DEPENDENCY);
 		createEAttribute(abstractTaskEClass, ABSTRACT_TASK__ID);
+		createEReference(abstractTaskEClass, ABSTRACT_TASK__SLAVE_TASKS);
 
 		taskEClass = createEClass(TASK);
 		createEAttribute(taskEClass, TASK__DURATION);
@@ -405,6 +416,7 @@ public class GpxPackageImpl extends EPackageImpl implements GpxPackage {
 		initEAttribute(getAbstractTask_EndDate(), ecorePackage.getEDate(), "endDate", null, 0, 1, AbstractTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractTask_Dependency(), this.getDependency(), this.getDependency_Dependant(), "dependency", null, 0, 1, AbstractTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractTask_Id(), ecorePackage.getEInt(), "id", null, 0, 1, AbstractTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractTask_SlaveTasks(), this.getAbstractTask(), null, "slaveTasks", null, 0, -1, AbstractTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTask_Duration(), ecorePackage.getEInt(), "duration", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
