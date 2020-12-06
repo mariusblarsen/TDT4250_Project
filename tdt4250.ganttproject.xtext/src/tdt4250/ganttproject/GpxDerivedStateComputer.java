@@ -54,5 +54,14 @@ public class GpxDerivedStateComputer implements IDerivedStateComputer {
 			}
 		}
 	}
+	
+	public void deriveSlaveTasks(EList<AbstractTask> tasks) {
+		for (AbstractTask t : tasks) {
+			for (AbstractTask slave : t.getDependency().getDependees()) {
+				AbstractTask master = t.getDependency().getDependant();
+				master.addSlaveTasks(slave);
+			}
+		}
+	}
 
 }
