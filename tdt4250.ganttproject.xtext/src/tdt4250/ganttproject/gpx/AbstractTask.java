@@ -8,6 +8,7 @@ import java.util.Date;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import tdt4250.ganttproject.gpx.Task;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link tdt4250.ganttproject.gpx.AbstractTask#getEndDate <em>End Date</em>}</li>
  *   <li>{@link tdt4250.ganttproject.gpx.AbstractTask#getDependency <em>Dependency</em>}</li>
  *   <li>{@link tdt4250.ganttproject.gpx.AbstractTask#getId <em>Id</em>}</li>
+ *   <li>{@link tdt4250.ganttproject.gpx.AbstractTask#getSlaveTasks <em>Slave Tasks</em>}</li>
  * </ul>
  *
  * @see tdt4250.ganttproject.gpx.GpxPackage#getAbstractTask()
@@ -118,5 +120,26 @@ public interface AbstractTask extends EObject {
 	 * @generated
 	 */
 	void setId(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Slave Tasks</b></em>' reference list.
+	 * The list contents are of type {@link tdt4250.ganttproject.gpx.AbstractTask}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Slave Tasks</em>' reference list.
+	 * @see tdt4250.ganttproject.gpx.GpxPackage#getAbstractTask_SlaveTasks()
+	 * @model derived="true"
+	 * @generated
+	 */
+	EList<AbstractTask> getSlaveTasks();
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Custom made method to add tasks to slavetask reference
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	void addSlaveTasks(AbstractTask task);
+	
 
 } // AbstractTask

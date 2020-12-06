@@ -18,11 +18,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import tdt4250.ganttproject.gpx.AbstractTask;
 import tdt4250.ganttproject.gpx.Dependency;
 import tdt4250.ganttproject.gpx.GpxPackage;
+import tdt4250.ganttproject.gpx.Task;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +38,7 @@ import tdt4250.ganttproject.gpx.GpxPackage;
  *   <li>{@link tdt4250.ganttproject.gpx.impl.AbstractTaskImpl#getEndDate <em>End Date</em>}</li>
  *   <li>{@link tdt4250.ganttproject.gpx.impl.AbstractTaskImpl#getDependency <em>Dependency</em>}</li>
  *   <li>{@link tdt4250.ganttproject.gpx.impl.AbstractTaskImpl#getId <em>Id</em>}</li>
+ *   <li>{@link tdt4250.ganttproject.gpx.impl.AbstractTaskImpl#getSlaveTasks <em>Slave Tasks</em>}</li>
  * </ul>
  *
  * @generated
@@ -110,6 +113,16 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 	 * @ordered
 	 */
 	protected int id = ID_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSlaveTasks() <em>Slave Tasks</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSlaveTasks()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AbstractTask> slaveTasks;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -250,6 +263,28 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 	 * @generated
 	 */
 	@Override
+	public EList<AbstractTask> getSlaveTasks() {
+		if (slaveTasks == null) {
+			slaveTasks = new EObjectResolvingEList<AbstractTask>(AbstractTask.class, this, GpxPackage.ABSTRACT_TASK__SLAVE_TASKS);
+		}
+		return slaveTasks;
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * Custom made method to add tasks to slavetask reference
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void addSlaveTasks(AbstractTask task) {
+		slaveTasks.add(task);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case GpxPackage.ABSTRACT_TASK__DEPENDENCY:
@@ -290,6 +325,8 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 				return getDependency();
 			case GpxPackage.ABSTRACT_TASK__ID:
 				return getId();
+			case GpxPackage.ABSTRACT_TASK__SLAVE_TASKS:
+				return getSlaveTasks();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -315,6 +352,10 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 			case GpxPackage.ABSTRACT_TASK__ID:
 				setId((Integer)newValue);
 				return;
+			case GpxPackage.ABSTRACT_TASK__SLAVE_TASKS:
+				getSlaveTasks().clear();
+				getSlaveTasks().addAll((Collection<? extends AbstractTask>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -339,6 +380,9 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 			case GpxPackage.ABSTRACT_TASK__ID:
 				setId(ID_EDEFAULT);
 				return;
+			case GpxPackage.ABSTRACT_TASK__SLAVE_TASKS:
+				getSlaveTasks().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -359,6 +403,8 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 				return dependency != null;
 			case GpxPackage.ABSTRACT_TASK__ID:
 				return id != ID_EDEFAULT;
+			case GpxPackage.ABSTRACT_TASK__SLAVE_TASKS:
+				return slaveTasks != null && !slaveTasks.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
