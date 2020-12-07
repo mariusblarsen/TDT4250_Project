@@ -12,7 +12,7 @@ AbstractTask:
 	Task | Milestone;
 
 Task:
-	'Task' name=STRING
+	'Task' name=ID
 	('lasts' duration=INT durationUnit=DURATION_UNIT)?
 	('from' startDate=Date)?
 	('due' endDate=Date)?
