@@ -4,6 +4,8 @@
 package tdt4250.ganttproject.validation;
 
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -32,6 +34,7 @@ public class GpxValidator extends AbstractGpxValidator {
 	public static final String START_DATE_EXPECTED = "Task %s: no start date specified";
 	public static final String CIRCULAR_DEPENDENCY = "Task %s can't depend on a task already dependant on itself";
 	public static final String SELF_DEPENDENCY = "Task %s can't depend on itself";
+	public static final String NAME_CHARACTER = "Task and Milestone names can only consist of characters, numbers, '_' and whitespace.";
 	
 	
 	@Check
@@ -98,6 +101,18 @@ public class GpxValidator extends AbstractGpxValidator {
 					}
 				}
 			}
+		}
+	}
+
+	@Check
+	public void checkTaskName(AbstractTask task) {
+		if (task.getName() != null) {
+			Pattern pattern = Pattern.compile("[^a-zA-Z0-9_ \n\t\r]");
+			Matcher matcher = pattern.matcher(task.getName());
+			if (matcher.find()) {
+				error(formatMessage(NAME_CHARACTER), 
+						GpxPackage.Literals.ABSTRACT_TASK__NAME);
+			}			 
 		}
 	}
 	
