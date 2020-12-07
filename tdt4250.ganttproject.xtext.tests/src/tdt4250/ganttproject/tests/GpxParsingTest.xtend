@@ -38,18 +38,18 @@ class GpxParsingTest {
 		val result = parseHelper.parse('''
 Project 'MyProject'
 
-Task 'Task 1'{
-	Task 'Task 1.1' lasts 5 days from 10.11.20;
-	Task 'Task 1.2' lasts 1 day, depends on 'Task 1.1'
+Task 'Task_1'{
+	Task 'Task1_1' lasts 5 days from 10.11.20;
+	Task 'Task1_2' lasts 1 day, depends on 'Task1_1'
 };
-Task 'Task 2' lasts 10 days, depends on 'Task 2';
-Milestone 'Phase 1' planned 27.11.20, depends on 'Task 2';
-Task 'Task 3' depends on 'Phase 1'{
-	Task 'Task 3.1' from 29.11.20 due 30.11.20;
-	Task 'Task 3.2' lasts 1 day;
-	Task 'Task 3.3' lasts 1 week, depends on 'Task 3.1', 'Task 1'
+Task 'Task_2' lasts 10 days, depends on 'Task_2';
+Milestone 'Phase_1' planned 27.11.20, depends on 'Task_2';
+Task 'Task_3' depends on 'Phase_1'{
+	Task 'Task3_1' from 29.11.20 due 30.11.20;
+	Task 'Task3_2' lasts 1 day;
+	Task 'Task3_3' lasts 1 week, depends on 'Task3_1', 'Task_1'
 };
-Task 'Task 4' lasts 10 days, depends on 'Task 3.1'
+Task 'Task_4' lasts 10 days, depends on 'Task3_1'
 		''')
 		Assertions.assertNotNull(result)
 		Assertions.assertEquals("MyProject", result.name)
@@ -84,6 +84,11 @@ Task 'Task 4' lasts 10 days, depends on 'Task 3.1'
 		Assertions.assertEquals(2, task33.dependency.dependees.size)
 		Assertions.assertSame(task31, task33.dependency.dependees.get(0))
 		Assertions.assertSame(task1, task33.dependency.dependees.get(1))
+		System.out.print("\n\n-------------\n\n")
+		//val task4 = result.tasks.get(4) as Task
+		//System.out.print(task4.dependency.dependees)
+		//System.out.print(task4.dependency.dependees.get(0).eCrossReferences)
+		System.out.print("\n\n-------------\n\n")
 		
 		
 		val errors = result.eResource.errors
