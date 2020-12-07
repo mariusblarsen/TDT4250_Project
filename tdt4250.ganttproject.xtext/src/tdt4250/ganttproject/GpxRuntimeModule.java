@@ -4,6 +4,7 @@
 package tdt4250.ganttproject;
 
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.resource.DerivedStateAwareResource;
 import org.eclipse.xtext.resource.DerivedStateAwareResourceDescriptionManager;
 import org.eclipse.xtext.resource.IDerivedStateComputer;
@@ -33,5 +34,10 @@ public class GpxRuntimeModule extends AbstractGpxRuntimeModule {
 
 	public Class<? extends IResourceDescription.Manager> bindIResourceDescriptionManager() {
 	    return DerivedStateAwareResourceDescriptionManager.class;
+	}
+	
+	@Override
+	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return GpxSimpleNameProvider.class;
 	}
 }
