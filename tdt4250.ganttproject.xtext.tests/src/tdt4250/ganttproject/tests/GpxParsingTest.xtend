@@ -49,7 +49,7 @@ Task 'Task_3' depends on 'Phase_1'{
 	Task 'Task3_2' lasts 1 day;
 	Task 'Task3_3' lasts 1 week, depends on 'Task 3_1', 'Task_1'
 };
-Task 'Task_4' lasts 10 days, depends on 'Task 3_1'
+Task 'Task_4' lasts 10 days, depends on 'Task 3_1', 'Task_1'
 		''')
 		Assertions.assertNotNull(result)
 		Assertions.assertEquals("MyProject", result.name)
@@ -76,7 +76,6 @@ Task 'Task_4' lasts 10 days, depends on 'Task 3_1'
 		var testDate = new Date(120, 10, 29)
 		
 		Assertions.assertEquals(testDate, task31.startDate)
-		//Assertions.assertEquals('30.11.20', task31.endDate)
 		Assertions.assertEquals(1, task32.duration)
 		Assertions.assertEquals(DURATION_UNIT.DAY, task32.durationUnit)
 		Assertions.assertEquals(1, task33.duration)
@@ -85,6 +84,8 @@ Task 'Task_4' lasts 10 days, depends on 'Task 3_1'
 		Assertions.assertSame(task31, task33.dependency.dependees.get(0))
 		Assertions.assertSame(task1, task33.dependency.dependees.get(1))
 		
+		// Test derived feature:
+		Assertions.assertEquals(2, task1.slaveTasks.size)
 		
 		val errors = result.eResource.errors
 		if (errors.isEmpty)
