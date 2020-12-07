@@ -1,18 +1,18 @@
 Project 'MyProject'
 
-Task 'Task 1'{
-	Task 'Task 1.1' lasts 5 days from '10.11.20';
-	Task 'Task 1.2' lasts 1 day, depends on 'Task 1.1'
+Task 'Task A'{
+	Task 'Task A_1' lasts 5 days from 10.11.20;
+	Task 'Task A_2' lasts 1 day, depends on 'Task A_1'
 };
 
-Task 'Task 2' lasts 10 days, depends on 'Task 1';
+Task 'Task B' lasts 10 days, depends on 'Task A';
 
-Milestone 'Phase 1' planned '27.11.20', depends on 'Task 2';
+Milestone 'Phase 1' planned 27.11.20, depends on 'Task B';
 
-Task 'Task 3' depends on 'Phase 1'{
-	Task 'Task 3.1' from '29.10.20' due '30.11.20';
-	Task 'Task 3.2' lasts 1 day;
-	Task 'Task 3.3' lasts 1 week, depends on 'Task 3.1', 'Task 1'
+Task 'Task C' depends on 'Phase 1'{
+	Task 'Task C_1' from 29.10.20 due 30.11.20;
+	Task 'Task C_2' lasts 1 day;
+	Task 'Task C_3' lasts 1 week, depends on 'Task C_1', 'Task A'
 };
 
-Task 'Task 4' lasts 10 days, depends on 'Task 3.1'
+Task 'Task 4' lasts 10 days, depends on 'Task C_1'
