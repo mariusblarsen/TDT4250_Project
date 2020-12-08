@@ -276,6 +276,9 @@ public class AbstractTaskImpl extends MinimalEObjectImpl.Container implements Ab
 	 * @generated NOT
 	 */
 	public void addSlaveTasks(AbstractTask task) {
+		if (slaveTasks == null) {
+			slaveTasks = new EObjectResolvingEList<AbstractTask>(AbstractTask.class, this, GpxPackage.ABSTRACT_TASK);
+		} 
 		slaveTasks.add(task);
 	}
 
