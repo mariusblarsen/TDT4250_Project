@@ -1,13 +1,12 @@
 # TDT4250 GanttProject
 
-## TODO
-
-- [x] Derived feature slaveTasks
-- [x] \<depend\> in generateTask
-- [ ] Start date for tasks with dependencies
-- [ ] (?) Start-view for project: Earliest date of all tasks. Could be a derived feature of project
+This project contains an xtext DSL that aims to be an intuitive textual way of generating Gantt chart by limiting scope, validation-warnings and appropriate suggestions. This is done by writing tasks and milestone with durations and dependencies, which result in an generated  XMI-file that can be used to import into GanttProject.
 
 ## Installation
+
+### Dependency
+
+GanttProject 2.8.11 (free), [Installation page](https://www.ganttproject.biz/download/free) *used to view the resulting file*
 
 ### Cloning
 
@@ -41,7 +40,16 @@
 * Click "Select all" and then "Finish"
 * When promped "Convert to xtext-project", select yes
   * If not prompted, rightclick project -> configure -> "Convert to xtext-project"
-* You are now ready to test the DSL IDE.
+* You are now ready to test the DSL.
+
+### Operating the UI
+
+* Right-click sample.gpx
+* *Open with gpx editor*
+* Make changes as wanted
+* The output XMI file *project.gan* can be found in src-gen found in the workspace
+* Open *\{projectName\}.gan* in GanttProject to see the resulting file, or open it as text to view the raw file.
+  * Unfortunatly, changes can't be seen in realtime as GanttProject does not refresh when new changes are made to the source-file.
 
 
 
