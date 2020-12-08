@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 
@@ -35,7 +36,8 @@ public class GpxValidator extends AbstractGpxValidator {
 	public static final String CIRCULAR_DEPENDENCY = "Task %s can't depend on a task already dependant on itself";
 	public static final String SELF_DEPENDENCY = "Task %s can't depend on itself";
 	public static final String NAME_CHARACTER = "Task and Milestone names can only consist of characters, numbers, '_' and whitespace.";
-	
+	public static final String DEPENDEES_REF = "- Couldn't resolve reference. \n- Note: References can't contain special characters.";
+
 	
 	@Check
 	public void checkTaskEndDateConsistent(Task task) {
@@ -76,7 +78,6 @@ public class GpxValidator extends AbstractGpxValidator {
 			}			 
 		} else if (task.getDependency() != null) {
 			if (startDate != null) {
-				//TODO: dependencies could be different... not necessarily Finish -  Start -> extra checks are needed
 				error(formatMessage(START_DATE_NOT_EXPECTED_WITH_DEPENDENCIES, task.getName()), GpxPackage.Literals.TASK__START_DATE);
 			}
 		} else if (startDate == null) {
@@ -88,6 +89,10 @@ public class GpxValidator extends AbstractGpxValidator {
 	public void checkDependencies(AbstractTask ATask) {
 		if (ATask.getDependency() != null) {
 			for (AbstractTask masterTask: ATask.getDependency().getDependees()) {
+				if (masterTask.eIsProxy()) {
+					error(formatMessage(DEPENDEES_REF), 
+							GpxPackage.Literals.ABSTRACT_TASK__DEPENDENCY);
+				}
 				if (masterTask == ATask) {
 					error(formatMessage(SELF_DEPENDENCY, ATask.getName()),
 							GpxPackage.Literals.ABSTRACT_TASK__DEPENDENCY);
@@ -99,7 +104,7 @@ public class GpxValidator extends AbstractGpxValidator {
 															GpxPackage.Literals.ABSTRACT_TASK__DEPENDENCY);
 						}
 					}
-				}
+				}		 
 			}
 		}
 	}
