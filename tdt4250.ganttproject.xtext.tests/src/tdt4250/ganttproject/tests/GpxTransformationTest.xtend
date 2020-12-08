@@ -23,20 +23,18 @@ class GpxTransformationTest {
 	def void loadModel() {
 		GpxPackage.eINSTANCE.eClass
 		val result = parseHelper.parse('''
-Project 'MyProject'
+Project 'My_Project'
 
-Task 'Task 1'{
-	Task 'Task 1.1' lasts 5 days from 10.11.20;
-	Task 'Task 1.2' lasts 1 day, depends on 'Task 1.1'
+Task 'Task A' from 09.01.20 due 10.01.20;
+Task 'Task B' lasts 1 day, depends on 'Task A';
+Task 'Task C' {  
+	Task 'Task C_1' lasts 1 day, depends on 'Task B'
 };
-Task 'Task 2' lasts 10 days, depends on 'Task 2';
-Milestone 'Phase 1' planned 27.11.20, depends on 'Task 2';
-Task 'Task 3' depends on 'Phase 1'{
-	Task 'Task 3.1' from 29.11.20 due 30.11.20;
-	Task 'Task 3.2' lasts 1 day;
-	Task 'Task 3.3' lasts 3 week, depends on 'Task 3.1', 'Task 1'
-};
-Task 'Task 4' lasts 10 days, depends on 'Task 3.1'
+Task 'Task D', depends on 'Task C' {
+	Task 'Task D_1' lasts 1 day, depends on 'Task D'
+}
+
+
 		''')
 		
 		System.out.println(GpxCustomGenerator.generate(result))
