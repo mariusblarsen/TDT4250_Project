@@ -27,12 +27,12 @@ GanttProject 2.8.11 (free), [Installation page](https://www.ganttproject.biz/dow
 ### Run IDE
 
 * Create new run configuration
-  * (Optional) Rename configuration, e.g "gpx-ide"
+  * (Optional) Rename configuration, e.g "Gpx"
   * In tab "Plug-ins", select "Plug-ins selected below only" and uncheck:
     * tdt4250.ganttproject.xtext.tests (1.0.0 qualifier)
     * tdt4250.ganttproject.xtext.ui.tests (1.0.0 qualifier)
   * Leave rest as default and click "Run"
-* Run "gpx-ide" in a new eclipse
+* Run "Gpx" in a new eclipse
 * In the new Eclipse runtime, "File" -> "Import..."
 * Choose the "General/Existing Projects into Workspace" wizard
 * Click "Next"
