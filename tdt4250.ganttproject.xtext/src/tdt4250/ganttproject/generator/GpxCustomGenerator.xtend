@@ -9,6 +9,16 @@ import tdt4250.ganttproject.gpx.DURATION_UNIT
 import tdt4250.ganttproject.gpx.Milestone
 import tdt4250.ganttproject.gpx.Project
 import tdt4250.ganttproject.gpx.Task
+import tdt4250.ganttproject.gpx.AbstractTask
+import tdt4250.ganttproject.gpx.GpxFactory
+import java.util.Arrays
+import java.util.List
+import java.time.Duration
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+import org.eclipse.emf.common.util.EList
+import java.util.Calendar
 
 /**
  * Generates code from your model files on save.
@@ -92,24 +102,105 @@ class GpxCustomGenerator {
 	
 	def static dispatch void generateTask(Milestone task, StringBuilder stringBuilder) {
 		stringBuilder <<'''
-			<task id="«task.id»" name="«task.name»" color="#990066" meeting="true" start="«task.endDate != null? convertDate(task.endDate) : 0»" duration="0" complete="0" thirdDate="«task.endDate != null? convertDate(task.endDate) : 0»" thirdDate-constraint="0" expand="true">
+			<task id="«task.id»" name="«task.name»" color="#8cb6ce" meeting="true" start="«task.endDate !== null? convertDate(task.endDate) : 0»" duration="0" complete="0" thirdDate="«task.endDate !== null? convertDate(task.endDate) : 0»" thirdDate-constraint="0" expand="true">			
 		'''
-//TODO list tasks which DEPEND on the current one /either bi-directional links in model or derived feature
-        stringBuilder << "
-			</task>"
+		task.slaveTasks.forEach[generateDepend(it, stringBuilder)]
+        stringBuilder << '''
+        	</task>
+        '''
+			
 	}
 	def static dispatch void generateTask(Task task, StringBuilder stringBuilder) {
 		stringBuilder << '''
-			<task id="«task.id»" name="«task.name»" color="#990066" meeting="false" start="«task.endDate != null? convertDate(task.startDate) : 0»" duration="«adjustDurationToDays(task)»" complete="0" thirdDate="«task.endDate != null? convertDate(task.endDate) : 0»" thirdDate-constraint="0" expand="true">
+			<task id="«task.id»" name="«task.name»" color="#990066" meeting="false" start="«task.startDate !== null? convertDate(task.startDate) : convertDate(adjustStartDate(task))»" duration="«adjustDurationToDays(task)»" complete="0" enddate="«task.endDate !== null? convertDate(task.endDate) : 0»" expand="true">
 		'''
-//TODO list tasks which DEPEND on the current one /either bi-directional links in model or derived feature
+		task.slaveTasks.forEach[generateDepend(it, stringBuilder)]
         task.subtasks.forEach[generateTask(it, stringBuilder)]
-        stringBuilder << "
-			</task>"
+        stringBuilder << '''
+        	</task>
+        '''
+	}
+
+
+	def static Date adjustEndDate(AbstractTask task) {
+		// Ground case for recursive checks 
+		task.endDate !== null? return task.endDate
+		if (task instanceof Task){
+			if (task.duration > 0){
+				val Date startDate = adjustStartDate(task);
+				//task.setStartDate(startDate);
+				val Calendar c = Calendar.getInstance();
+				c.setTime(startDate);
+				c.add(Calendar.DATE, adjustDurationToDays(task));
+				task.setEndDate(c.getTime());
+				return c.getTime();
+			}
+		}
+		return new Date(0)
 	}
 	
-	def static int adjustDurationToDays(Task t) {
-		return t.durationUnit == DURATION_UNIT.WEEK ? t.duration * 7 : t.duration	
+	def static Date adjustStartDate(AbstractTask task) {
+		if (task instanceof Task){
+			// Ground case for recursive checks 
+			task.startDate !== null? return task.startDate
+		}
+		if (task.dependency !== null){
+			// If the task has dependencies,
+			// startDate is set to latest finish of dependencies
+			var Date earliestDate = new Date(0);
+			var dependees = task.dependency.dependees as EList<AbstractTask>
+			for (AbstractTask aTask: dependees){
+				if (aTask.endDate !== null){
+					// earliestDate has to be after dependant endDate
+					if (aTask.endDate.after(earliestDate)){
+						earliestDate = aTask.endDate
+					}
+				} else {
+					val Date endDate = adjustEndDate(aTask)
+					if (endDate === null){
+						return null
+					}
+					if (endDate.after(earliestDate)){
+						earliestDate = endDate
+					}
+				}
+			}
+			return earliestDate
+		}
+		
+		if(task instanceof Task){
+			if (task.subtasks.size > 0){
+				//var Date earliestDate = new Date(0)
+				var subtasks = task.subtasks as EList<AbstractTask>
+				var Date earliestDate = adjustStartDate(subtasks.get(0))
+				for (AbstractTask aTask: subtasks){
+					var date = adjustStartDate(aTask)
+					date.before(earliestDate) ? earliestDate=date 
+				}
+			return earliestDate	
+			}
+		}
+	}
+	
+	def static generateDepend(AbstractTask task, StringBuilder stringBuilder) {
+		stringBuilder << '''
+		<depend id="«task.id»" type="2" difference="0" hardness="Strong"/>
+		'''
+	}
+	
+	
+	def static int adjustDurationToDays(Task t) { 
+		if (t.duration > 0){
+			return t.durationUnit == DURATION_UNIT.WEEK ? t.duration * 7 : t.duration
+		} else {
+			if (t.startDate !== null){
+				if (t.endDate !== null){ 
+					val timeDiff = ChronoUnit.DAYS.between(t.startDate.toInstant(), t.endDate.toInstant()) as int
+					return timeDiff
+				}
+			}
+			return 0
+		}	
 	}
 		
 	def static void generateCommonEnding(StringBuilder stringBuilder) {
