@@ -17,20 +17,18 @@ Task hidden(WS):
 	('from' startDate=Date)?
 	('due' endDate=Date)?
 	((',')? 'depends' 'on' dependency=Dependency)?
-	//((',')? 'depends' 'on' dependenciesAsDependant+=Dependency (',' dependenciesAsDependant+=Dependency)*)?
 	('{'
 	subtasks+=AbstractTask (';' subtasks+=AbstractTask)*
-	'}')?;
+	'}')?
+	;
 	
 Milestone hidden(WS):
 	'Milestone' name=ID 'planned' endDate=Date
 	((',')? 'depends' 'on' dependency=Dependency)?;
-	//((',')? 'depends' 'on' dependenciesAsDependant+=Dependency (','  dependenciesAsDependant+=Dependency)*)?;
 
-//separate entity because it's going to be extended with extra characteristics, not just task by itself
-Dependency:
-	dependees+=[AbstractTask|STRING] (',' dependees+=[AbstractTask|STRING])* 
-	//dependee=[AbstractTask|STRING]
+//separate entity because it can be extended with extra characteristics, not just task by itself
+Dependency hidden(WS):
+	dependees+=[AbstractTask|ID] (',' dependees+=[AbstractTask|ID])* 
 ;
 
 enum DURATION_UNIT:
