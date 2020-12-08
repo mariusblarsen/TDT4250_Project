@@ -17,6 +17,7 @@ import tdt4250.ganttproject.gpx.Project
 class GpxGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
- 		fsa.generateFile('project.gan', GpxCustomGenerator.generate(resource.contents.get(0) as Project));
+		val project = resource.allContents.findFirst[Project.name !== null] as Project
+ 		fsa.generateFile(project.getName() + '.gan', GpxCustomGenerator.generate(resource.contents.get(0) as Project));
 	}
 }
