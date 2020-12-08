@@ -24,6 +24,7 @@ public class GpxDerivedStateComputer implements IDerivedStateComputer {
 			EList<AbstractTask> tasks = project.getTasks();
 			if (!tasks.isEmpty()) {
 				initializeTasks(project.getTasks(), false);
+				deriveSlaveTasks(project.getTasks());
 			}
 		 }
 	}
@@ -39,6 +40,7 @@ public class GpxDerivedStateComputer implements IDerivedStateComputer {
 			EList<AbstractTask> tasks = project.getTasks();
 			if (!tasks.isEmpty()) {
 				initializeTasks(project.getTasks(), true);
+				deriveSlaveTasks(project.getTasks());
 			}
 		}
 	}
@@ -57,11 +59,19 @@ public class GpxDerivedStateComputer implements IDerivedStateComputer {
 	
 	public void deriveSlaveTasks(EList<AbstractTask> tasks) {
 		for (AbstractTask t : tasks) {
-			for (AbstractTask slave : t.getDependency().getDependees()) {
-				AbstractTask master = t.getDependency().getDependant();
-				master.addSlaveTasks(slave);
+			// Add slavetasks for given task
+			if (t.getDependency() != null) {
+				for (AbstractTask master : t.getDependency().getDependees()) {
+					master.addSlaveTasks(t);
+				}
+			// Then recursively do it for subtasks
+			if (t instanceof Task) {
+				EList<AbstractTask> subtasks = ((Task) t).getSubtasks();
+				if (!subtasks.isEmpty()) {
+					deriveSlaveTasks(subtasks);
+				}
+			}
 			}
 		}
 	}
-
 }
